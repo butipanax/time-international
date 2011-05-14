@@ -1,14 +1,98 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>TimeInternationalECommerce</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<%= yield %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Time international GmbH</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-</body>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+    <!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
+    <script type="text/javascript" src="/javascripts/cufon-yui.js"></script>
+    <script type="text/javascript" src="/javascripts/arial.js"></script>
+    <script type="text/javascript" src="/javascripts/cuf_run.js"></script>
+    <!-- CuFon ends -->
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <div class="header_resize">
+          <div class="logo">
+            <h1><a href="index.html">Time<span> international</span><small>e-commerce platform</small></a></h3>
+          </div>
+          <div class="menu_nav">
+            <div id="topmenu">
+              <ul>
+                <li id="current"><a href="index.html" title="" class="home">Home <span>欢迎光顾</span></a></li>
+                <li><a href="index.html" title="" class="about">About Us <span>公司信息</span></a></li>
+                <li><a href="index.html" title="" class="services">Services <span> 服务内容</span></a></li>   
+                <li><a href="index.html" title="" class="contact">Contact <span>联系我们</span></a></li>    
+              </ul>
+            </div>
+          </div>
+          <div class="clr"></div>
+          <div class="hbg">
+            <div class="clr"></div>
+          </div>
+
+        </div>
+        <div class="clr"></div>
+      </div>
+
+      <div class="content">
+        <div class="mainbar">
+
+          <%= yield %>
+          <div class="article">
+
+          </div>
+          <div class="pagenavi"><span class="pages">Page 1 of 2</span><span class="current">1</span><a href="#" title="2">2</a><a href="#" >&raquo;</a></div>
+        </div>
+
+
+        <div class="sidebar">
+
+          <div class="gadget">
+            <div class="search">
+              <form method="get" id="search" action="">
+                <span>
+                  <input type="text" value="Search..." name="s" id="s" />
+                  <input name="searchsubmit" type="image" src="images/search.gif" value="Go" id="searchsubmit" class="btn"  />
+                </span>
+              </form>
+              <!--/searchform -->
+              <div class="clr"></div>
+            </div>
+          </div>
+          <div class="gadget">   
+            <div id="navigation">
+              <ul>
+                <li><a href="#">Home page</a></li>
+                <li><a href="#">New products</a></li>
+                <li><a href="#">All products</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">F.A.Q.</a></li>
+                <li><a href="#">Contacts</a></li>
+              </ul>
+              <div id="cart">
+                <strong>Shopping cart:</strong> <br /> 0 items
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer_resize">
+        <p class="cf">Designed for: <a href="#">Time international GmbH - 2011</a>.</p>
+        <!--     <p class="rf">Thanks: <a href="http://www.cssmoban.com/" title="网页模板">cssMoban.com</a></p> -->
+        <div class="clr"></div>
+      </div>
+    </div>
+  </body>
 </html>
+
