@@ -1,0 +1,41 @@
+<% if not @user.profile %>
+	<%= render(:partial => "profile", :object => @user.build_profile) %>
+<% else %>
+	<%= render(:partial => "profile", :object => @user.profile) %>
+<% end %>
+
+<h3> 更新账户密码：</h3>
+<hr />
+  
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <% if resource.errors.any? %>
+    <div id="error_explanation">
+      <h2>存在<%= resource.errors.count %>个错误阻止您更新:</h2>
+      <ol>
+        <% resource.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ol>
+    </div>
+  <% end %>
+
+  <p><%= f.label '帐号（email）：' %><br />
+  <%= f.email_field :email %></p>
+
+  <p><%= f.label '新密码：' %> <i>（如果不想修改原密码，此处请保持为空）</i><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label '确认新密码：' %><br />
+  <%= f.password_field :password_confirmation %></p>
+
+  <p><%= f.label '当前密码：' %> <br />  
+  <%= f.password_field :current_password %></p>
+
+  <p><%= f.submit "更新" %></p>
+<% end %>
+
+
+
+<p>不满意？ <%= link_to "取消帐号", registration_path(resource_name), :confirm => "确定取消此帐号？", :method => :delete %>.</p>
+
+<%= link_to "回退", :back %>

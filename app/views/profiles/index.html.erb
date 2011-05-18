@@ -1,0 +1,31 @@
+<h3>用户档案列表：</h3>
+<hr />
+
+<table>
+  <tr>
+    <th>姓名</th>
+    <th>性别</th>
+    <th>地址</th>
+    <th>邮编</th>
+    <th>电话</th>
+  </tr>
+
+<% @profiles.each do |profile| %>
+  <tr>
+    <td><%= profile.name %></td>
+    <td><% if profile.sex %> 
+     男<% else %>女
+     <% end %></td>
+    <td><%= profile.address %></td>
+    <td><%= profile.postcode %></td>
+    <td><%= profile.telephone %></td>
+    <td><%= link_to 'Show', profile %></td>
+    <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+    <td><%= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Profile', new_profile_path %>

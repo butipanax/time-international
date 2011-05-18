@@ -1,0 +1,45 @@
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2>存在<%= @profile.errors.count%> 个错误导致无法保存:</h2>
+
+      <ol>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ol>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '姓名：' %><br />
+    <%= f.text_field :name, :size => 8 %>
+  </div>
+
+  <div class="field">
+    <%= f.label '姓别：' %>
+    <%= f.radio_button :sex, true %>
+    <%= f.label '男' %>
+    <%= f.radio_button :sex, false %>
+    <%= f.label '女' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label '地址：' %><br />
+    <%= f.text_field :address, :size => 70  %>
+  </div>
+
+  <div class="field">
+    <%= f.label '邮政编码：' %><br />
+    <%= f.text_field :postcode, :size => 7%>
+  </div>
+
+  <div class="field">
+    <%= f.label '联系电话：' %><br />
+    <%= f.text_field :telephone, :size => 20  %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit '保 存' %>
+  </div>
+<% end %>

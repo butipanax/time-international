@@ -1,0 +1,18 @@
+<h3>会员登录</h3>
+<hr />
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <p><%= f.label '帐号：' %><br />
+  <%= f.email_field :email %></p>
+
+  <p><%= f.label '密码：' %><br />
+  <%= f.password_field :password %></p>
+
+  <% if devise_mapping.rememberable? -%>
+    <p><%= f.check_box :remember_me %> <%= f.label '记住我的登录状态' %></p>
+  <% end -%>
+
+  <p><%= f.submit "登录" %></p>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
