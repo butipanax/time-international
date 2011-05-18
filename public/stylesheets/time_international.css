@@ -58,28 +58,35 @@ h1 small {
 }
 
 h2 {
-	font: normal 24px Arial, Helvetica, sans-serif;
 	padding: 8px 0;
 	margin: 0;
-	color: #595959;
+	color: #92A117;
 }
 
 h3 {
 	font: normal 26px Arial, Helvetica, sans-serif;
 	padding: 28px 0 8px;
 	margin: 0;
-	color: #fffefe;
+	color: #92A117;
 	text-transform: uppercase;
+}
+
+h4 {
+	font-weight: bold;
+	color: #92A117;
+}
+
+hr {
+	border: none;
+	border-bottom: 2px dotted #92A117;
+	height: 0;
 }
 
 p {
 	margin: 8px 0;
 	padding: 0 0 8px 0;
 	font: normal 12px/1.8em Arial, Helvetica, sans-serif;
-}
-
-p.spec {
-	
+	font-weight: bold;
 }
 
 a {
@@ -87,22 +94,9 @@ a {
 	text-decoration: none;
 }
 
-a.rm,a.com {
-	padding: 0;
-	text-decoration: none;
-	color: #92A117;
-}
-
-.fl {
-	float: left;
-}
-
-.fr {
-	float: right;
-}
-
 .header,.content,.menu_nav,.footer,form,ol,ol li,ul,.content .mainbar,.content .sidebar
 	{
+	font-weight: bold;
 	margin: 0;
 	padding: 0;
 }
@@ -137,6 +131,13 @@ a.rm,a.com {
 	color: #fffefe;
 }
 
+.hbg li {
+	float: right;
+	margin: 5px 150px 0 0;
+	color: #f0f1a3;
+	font-size: 120%;
+	font-weight: bold;
+}
 /* menu */
 .menu_nav {
 	margin: 22px 0 0 0;
@@ -249,15 +250,17 @@ a.rm,a.com {
 /* content */
 .content {
 	padding: 2px 0;
-	margin: 0 ;
-	width: 970px;
+	margin: 0;
+	width: 1024px;
+	height: 1521px;
 }
 
 .mainbar {
-	margin: 0;
+	margin: 0 0 0 20px;
 	padding: 0;
 	float: right;
-	width: 653px;
+	width: 704px;
+	height: 1521px;
 }
 
 .mainbar img {
@@ -272,8 +275,18 @@ a.rm,a.com {
 }
 
 .mainbar .article {
-	margin: 0 0 10px;
-	padding: 10px 15px 5px;
+	margin: 0 0 10px 0px;
+	padding: 5px 15px 2px 0;
+}
+
+.mainbar .flash_info {
+	margin-top: 10px; width : 450px;
+	border: 2px solid #fddb19;
+	padding: 7px;
+	padding-bottom: 0;
+	margin-bottom: 10px;
+	background-color: white;
+	width: 450px;
 }
 
 .mainbar .spec a {
@@ -291,10 +304,10 @@ a.rm,a.com {
 	padding: 0;
 	float: left;
 	width: 300px;
+	height: 1521px;
 }
 
 .sidebar #navigation {
-
 	background-position: top left;
 	background-repeat: no-repeat;
 	width: 220px;
@@ -392,7 +405,6 @@ ul.ex_menu li a:hover {
 	float: left;
 }
 
-
 .footer {
 	background: url(/images/fbg_line.gif) repeat-x bottom;
 }
@@ -408,8 +420,9 @@ ul.ex_menu li a:hover {
 }
 
 .footer .cf {
-	text-align:center;
+	text-align: center;
 }
+
 .footer .rf {
 	float: right;
 }

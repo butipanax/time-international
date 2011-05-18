@@ -1,4 +1,12 @@
 TimeInternationalECommerce::Application.routes.draw do
+  resources :profiles
+
+  resources :roles
+
+  get "users/index"
+
+  devise_for :users
+
   get "main/index"
 
   # The priority is based upon order of creation:
@@ -50,7 +58,7 @@ TimeInternationalECommerce::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "main#index", :as => "main"
+  root :to => "main#index", :as => "root"
 
   # See how all your routes lay out with "rake routes"
 
