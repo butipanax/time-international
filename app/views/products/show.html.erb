@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div class="art">
+
+<p>
+<div class="content_border">
+  <%= image_tag @product.photo.url(:medium) %>
+</div>
+</p>
+       
+<div class="clr"></div><br />
 
 <p>
   <b>商品名称:</b>
@@ -9,10 +17,13 @@
   <b> 商品目录:</b>
   <%= @product. category_id %>
 </p>
-
 <p>
-  <b>商品介绍n:</b>
-  <%= @product.description %>
+  <b> 商品简介:</b>
+  <%= @product. intro %>
+</p>
+<p>
+  <b>商品介绍:</b>
+  <%= @product.description.html_safe %>
 </p>
 
 <p>
@@ -20,6 +31,8 @@
   <%= @product.price %>
 </p>
 
-
+</div>
+       
+<div class="clr"></div><br />
 <%= link_to '编辑', edit_product_path(@product) %> |
 <%= link_to '返回', products_path %>

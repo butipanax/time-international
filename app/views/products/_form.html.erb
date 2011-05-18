@@ -1,27 +1,41 @@
-<%= form_for(@product) do |f| %>
+<%= javascript_include_tag :ckeditor %>
+
+
+<%= form_for(@product, :html => { :multipart => true } ) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h2>存在<%= @product.errors.count %> 错误导致无法保存：</h2>
 
-      <ul>
+      <ol>
       <% @product.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
+      </ol>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :产品名称 %><br />
+    <%= f.label :商品名称 %><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :产品目录 %><br />
+    <%= f.label :商品目录 %><br />
     <%= f.text_field :category_id, :prompt => "请选择目录" %>
   </div>
+  
   <div class="field">
-    <%= f.label :产品介绍 %><br />
-    <%= f.text_area :description, :rows => 20, :cols => 60 %>
+  	<%= f.label '上传商品图片' %><br />
+  	<%= f.file_field :photo %>
+  </div>
+  
+   <div class="field">
+    <%= f.label :商品简介 %><br />
+    <%= f.text_area :intro, :rows=> 5, :cols=>100 %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :商品介绍 %><br />
+    <%= f.cktext_area :description, :toobar=>'full', :width => '670px', :height =>'500px' %>
   </div>
   <div class="field">
     <%= f.label :价格 %><br />

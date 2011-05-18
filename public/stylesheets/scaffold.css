@@ -1,57 +1,93 @@
-body { background-color: #fff; color: #333; }
+body {
+	background-color: #fff;
+	color: #333;
+}
 
-body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
-
+body,p,ol,ul,td {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
 }
 
 pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+	background-color: #eee;
+	padding: 10px;
+	font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
+a {
+	color: #000;
+}
 
-div.field, div.actions {
-  margin-bottom: 10px;
+a:visited {
+	color: #666;
+}
+
+a:hover {
+	color: #fff;
+	background-color: #000;
+}
+
+div.field,div.actions {
+	margin-bottom: 10px;
 }
 
 #notice {
-  color: green;
+	color: green;
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: #fddb19;
-  display: table;
+	padding: 2px;
+	background-color: #fddb19;
+	display: table;
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid #fddb19;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: white;
+	width: 450px;
+	border: 2px solid #fddb19;
+	padding: 7px;
+	padding-bottom: 0;
+	margin-bottom: 20px;
+	background-color: white;
 }
 
 #error_explanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  margin-bottom: 0px;
-  background-color: #fddb19;
-  color: #fff;
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 5px 5px 15px;
+	font-size: 12px;
+	margin: -7px;
+	margin-bottom: 0px;
+	background-color: #fddb19;
+	color: #fff;
 }
 
 #error_explanation ul li {
-  font-size: 12px;
-  list-style: square;
+	font-size: 12px;
+	list-style: square;
+}
+
+.art {
+	width: 650px;
+	display: block;
+	background: white;
+	border: 1px solid #92A117; /*rgba ie fix*/
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 0px 0px 5px #c6c6bf;
+	-khtml-box-shadow: 0px 0px 5px #c6c6bf;
+	-webkit-box-shadow: 0px 0px 5px #c6c6bf;
+	box-shadow: 0px 0px 5px #c6c6bf;
+	margin-top: 10px;
+	padding: 10px 10px;
+	overflow: auto;
+	float: left;
+}
+
+.content_border {
+	border: 1px solid #92A117;
+	float: left;
 }

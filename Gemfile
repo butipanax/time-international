@@ -8,6 +8,9 @@ gem 'sqlite3'
 
 gem 'devise'
 gem 'cancan'
+gem 'paperclip', "~> 2.3"
+
+gem 'ckeditor', '3.4.2.pre'
 
 group :production do
   gem 'mysql'

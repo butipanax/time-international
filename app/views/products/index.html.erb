@@ -1,10 +1,11 @@
-<h1>商品列表</h1>
+<h3>商品列表</h3>
+<hr />
 
 <table>
   <tr>
+  	<th>商品快照</th>
     <th>商品名称</th>
-    <th> 商品目录</th>
-    <th>商品介绍</th>
+    <th>商品简介</th>
     <th>价格</th>
     <th></th>
     <th></th>
@@ -13,9 +14,9 @@
 
 <% @products.each do |product| %>
   <tr>
+  	<td><%= image_tag product.photo.url(:thumb) %></td>
     <td><%= product.title %></td>
-    <td><%= product. category_id %></td>
-    <td><%= product.description %></td>
+    <td><%= product.intro %></td>
     <td><%= product.price %></td>
     <td><%= link_to '查看', product %></td>
     <td><%= link_to '编辑', edit_product_path(product) %></td>
