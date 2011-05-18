@@ -1,4 +1,6 @@
 TimeInternationalECommerce::Application.routes.draw do
+  resources :products
+
   resources :profiles
 
   resources :roles
