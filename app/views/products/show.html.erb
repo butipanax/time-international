@@ -15,7 +15,7 @@
 
 <p>
   <b> 商品目录:</b>
-  <%= @product. category_id %>
+  <%= Category.find_by_id(@product. category_id).name %>
 </p>
 <p>
   <b> 商品简介:</b>

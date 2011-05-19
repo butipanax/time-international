@@ -87,12 +87,14 @@
           <div class="gadget">   
             <div id="navigation">
               <ul>
-                <li><a href="#">商品目录1</a></li>
-                <li><a href="#">商品目录2</a></li>
-                <li><a href="#">商品目录3</a></li>
-                <li><a href="#">商品目录4</a></li>
-                <li><a href="#">商品目录5</a></li>
-                <li><a href="#">商品目录6</a></li>
+              	<% Category.where( :parent_id => nil ).each do |category| %>
+                <li><%= link_to category.name %></li>
+                	<ol> 
+                		<% Category.find_all_by_parent_id(category.id).each do |subCategory| %>
+                		<li><%= link_to "- "+subCategory.name %></li> 
+                		<% end %>
+                	</ol>
+				<% end %>
               </ul>
               <div id="cart">
                 <strong>您的购物车:</strong> <br /> 0 件商品

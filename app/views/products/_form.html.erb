@@ -20,12 +20,13 @@
   </div>
   <div class="field">
     <%= f.label :商品目录 %><br />
-    <%= f.text_field :category_id, :prompt => "请选择目录" %>
+    <%= f.select :category_id, Category.all.select{|p|p.parent_id}.map{|p| [Category.find_by_id(p.parent_id).name + "->" + p.name,p.id]}.sort_by{|p|p[0]} %>
+    
   </div>
   
   <div class="field">
   	<%= f.label '上传商品图片' %><br />
-  	<%= f.file_field :photo %>
+  	<%= f.file_field :photo, :style => 'background-color :white' %>
   </div>
   
    <div class="field">
@@ -42,6 +43,6 @@
     <%= f.text_field :price %>
   </div>
   <div class="actions">
-    <%= f.submit :生成商品%>
+    <%= f.submit :保存%>
   </div>
 <% end %>

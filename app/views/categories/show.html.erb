@@ -1,0 +1,15 @@
+
+
+<p>
+  <b>商品目录名称：</b>
+  <%= @category.name %>
+</p>
+
+<p>
+  <b>商品父目录名称：</b>
+  <%= if @category.parent_id then Category.find_by_id(@category.parent_id).name end %>
+</p>
+
+
+<%= link_to '编辑', edit_category_path(@category) %> |
+<%= link_to '返回', categories_path %>

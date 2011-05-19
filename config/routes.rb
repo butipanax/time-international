@@ -1,4 +1,6 @@
 TimeInternationalECommerce::Application.routes.draw do
+  resources :categories
+
   resources :products
 
   resources :profiles
@@ -10,6 +12,8 @@ TimeInternationalECommerce::Application.routes.draw do
   devise_for :users
 
   get "main/index"
+
+  match 'productslist/:category_id' => "Products#show_products_by_category"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

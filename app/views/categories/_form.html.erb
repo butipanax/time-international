@@ -1,0 +1,27 @@
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2>存在<%= @category.errors.count %>个错误导致无法保存</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label '目录名称' %><br />
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :parent_id %><br />
+    <%= f.select :parent_id, Category.all.select{|p| ! p.parent_id}.map{|p| [p.name,p.id]} %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit '保存'%>
+  </div>
+<% end %>
