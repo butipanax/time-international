@@ -1,11 +1,10 @@
-
-
-<div class="post">
-	<%= image_tag product.photo.url(:thumb) %>
-<div class="heading_box">
-	<h5><%= product.title %></h5>
+<div class="entry">
+  <%= image_tag product.photo.url(:thumb) %>
+  <h4><%= product.title %></h4>
+  <%=  sanitize(product.intro) %>
+  <div class="price_line">
+    <span class="price"><%= sprintf("￥%0.02f",product.price) %></span>
+    <%= link_to '详细',"/products/#{product.id}" %> 
+    <%= link_to '购买' %>
+  </div>
 </div>
-<div class="pub_date"><small><%= product.price %></small></div>
-<p><%= product.intro %></p>
-
-  

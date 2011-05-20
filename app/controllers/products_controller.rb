@@ -24,10 +24,10 @@ class ProductsController < ApplicationController
   def show_products_by_category
     category_id = params[:category_id]
     
+    @products_list = []
     if Category.find_by_id(category_id).parent_id
       @products_list = Product.find_all_by_category_id(category_id)
     else
-      @products_list = []
       for category in Category.find_all_by_parent_id(category_id)
         tmp = Product.find_all_by_category_id(category.id)
         unless tmp.size == 0
@@ -36,8 +36,7 @@ class ProductsController < ApplicationController
       end
     end
 
-    render 'products/products_list' unless @products_list.size == 0
-
+    render 'products/products_list'
   end
   
   # GET /products/new

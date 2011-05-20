@@ -17,11 +17,12 @@
   </div>
   
   <div class="field">
-    <%= f.label :parent_id %><br />
-    <%= f.select :parent_id, Category.all.select{|p| ! p.parent_id}.map{|p| [p.name,p.id]} %>
+    <%= f.label :'父目录：' %><br />
+    <%= f.select :parent_id, @parent_id_category %>
   </div>
   
   <div class="actions">
     <%= f.submit '保存'%>
   </div>
 <% end %>
+

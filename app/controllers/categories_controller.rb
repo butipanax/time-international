@@ -1,4 +1,7 @@
+#encoding: utf-8
+  
 class CategoriesController < ApplicationController
+
   # GET /categories
   # GET /categories.xml
   def index
@@ -24,8 +27,8 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   # GET /categories/new.xml
   def new
-    @category = Category.new
-
+    @category = Category.new 
+    @parent_id_category =  [["作为父目录",nil]] + Category.all.select{|p| ! p.parent_id}.map{|p| [p.name,p.id] }
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @category }
@@ -35,6 +38,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id])
+    @parent_id_category =  [["作为父目录",nil]] + Category.all.select{|p| ! p.parent_id}.map{|p| [p.name,p.id] }
   end
 
   # POST /categories

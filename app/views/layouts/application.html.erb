@@ -88,10 +88,10 @@
             <div id="navigation">
               <ul>
               	<% Category.where( :parent_id => nil ).each do |category| %>
-                <li><%= link_to category.name %></li>
+                  <li><%= link_to category.name, "/productslist/#{category.id}"%></li>
                 	<ol> 
                 		<% Category.find_all_by_parent_id(category.id).each do |subCategory| %>
-                		<li><%= link_to "- "+subCategory.name %></li> 
+                      <li><%= link_to "- "+subCategory.name, "/productslist/#{subCategory.id}" %></li> 
                 		<% end %>
                 	</ol>
 				<% end %>
