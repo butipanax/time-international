@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index,:show,:show_products_by_category]
+
   # GET /products
   # GET /products.xml
   def index
     @products = Product.all
-
+    @products = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 6
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
@@ -23,7 +25,8 @@ class ProductsController < ApplicationController
 
   def show_products_by_category
     category_id = params[:category_id]
-    
+    @cart = current_cart 
+    session[:current_category_id] = category_id
     @products_list = []
     if Category.find_by_id(category_id).parent_id
       @products_list = Product.find_all_by_category_id(category_id)
@@ -35,7 +38,9 @@ class ProductsController < ApplicationController
         end
       end
     end
-
+    unless @products_list.empty?
+      @products_list = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 6
+    end
     render 'products/products_list'
   end
   

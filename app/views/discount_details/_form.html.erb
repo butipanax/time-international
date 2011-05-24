@@ -1,0 +1,22 @@
+<%= form_for(@discount_detail) do |f| %>
+<% if @discount_detail.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@discount_detail.errors.count, "error") %> prohibited this discount_detail from being saved:</h2>
+	<ul>
+		<% @discount_detail.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<p>会员等级:<%= @discount_detail.id%>星会员</p>
+<div class="field">
+	<%= f.label "折扣:" %>
+	<%= f.text_field :discount_rate,:size => 10 %>
+</div>
+<div class="actions">
+	<%= f.submit "保存" %>
+</div>
+<% end %>

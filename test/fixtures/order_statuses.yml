@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: 新建订单
+
+two:
+  name: 订单已发货
+
+three:
+  name: 订单已付款
+
+four:
+  name: 订单已取消
+
+five:
+  name: 订单已关闭，交易成功

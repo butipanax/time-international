@@ -10,7 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110518202144) do
+ActiveRecord::Schema.define(:version => 20110523001447) do
+
+  create_table "carts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -37,6 +42,50 @@ ActiveRecord::Schema.define(:version => 20110518202144) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
   add_index "ckeditor_assets", ["user_id"], :name => "fk_user"
 
+  create_table "discount_details", :force => true do |t|
+    t.decimal  "discount_rate", :default => 1.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity",   :default => 1
+    t.integer  "order_id"
+    t.decimal  "price"
+  end
+
+  create_table "order_statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "email"
+    t.string   "postcode"
+    t.string   "telephone"
+    t.string   "pay_type"
+    t.string   "taobao_url"
+    t.string   "taobao_invoice_number"
+    t.decimal  "total_price"
+    t.decimal  "discount_price"
+    t.string   "invoice_number"
+    t.integer  "order_status"
+    t.datetime "shipping_date"
+    t.datetime "payment_date"
+    t.datetime "close_date"
+    t.text     "cancel_reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", :force => true do |t|
     t.string   "title"
     t.integer  "category_id"
@@ -56,15 +105,23 @@ ActiveRecord::Schema.define(:version => 20110518202144) do
     t.string   "address"
     t.string   "postcode"
     t.string   "telephone"
-    t.integer  "discount_rank", :default => 0
+    t.integer  "discount_rank", :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "sex"
+    t.integer  "bonus_score",   :default => 0
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "serial_numbers", :force => true do |t|
+    t.string   "serial_number_name"
+    t.integer  "current_max_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

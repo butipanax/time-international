@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role_id
 
   def role?(role)
-    return !!self.roles.find_by_name(role.to_s.camelize)
+    return self.role.name == role.to_s
   end
 end

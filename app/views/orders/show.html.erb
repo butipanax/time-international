@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @order.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @order.address %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @order.email %>
+</p>
+
+<p>
+  <b>Postcode:</b>
+  <%= @order.postcode %>
+</p>
+
+<p>
+  <b>Telephone:</b>
+  <%= @order.telephone %>
+</p>
+
+<p>
+  <b>Pay type:</b>
+  <%= @order.pay_type %>
+</p>
+
+<p>
+  <b>Taobao url:</b>
+  <%= @order.taobao_url %>
+</p>
+
+<p>
+  <b>Taobao invoice number:</b>
+  <%= @order.taobao_invoice_number %>
+</p>
+
+<p>
+  <b>Total price:</b>
+  <%= @order.total_price %>
+</p>
+
+<p>
+  <b>Discount price:</b>
+  <%= @order.discount_price %>
+</p>
+
+<p>
+  <b>Invoice number:</b>
+  <%= @order.invoice_number %>
+</p>
+
+<p>
+  <b>Order status:</b>
+  <%= @order.order_status %>
+</p>
+
+<p>
+  <b>Shipping date:</b>
+  <%= @order.shipping_date %>
+</p>
+
+<p>
+  <b>Close date:</b>
+  <%= @order.close_date %>
+</p>
+
+<p>
+  <b>Cancel reason:</b>
+  <%= @order.cancel_reason %>
+</p>
+
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

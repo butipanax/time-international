@@ -1,0 +1,43 @@
+.standard_form fieldset {
+	border: 1px solid #ddd;
+	padding: 19px;
+	margin: 0 0 20px 0;
+	background: #ffffff;
+}
+
+.standard_form fieldset p{
+	margin: 5px 0 5px 0;
+}
+.standard_form fieldset input {
+	font: 14px Helvetica,Arial, sans-serif;
+	color: #939495;
+	padding: 5px 5px 5px 5px;
+	font-weight: bold;
+	background: #fdfdfd;
+	border-width: thin thin thin thin;
+	border-style: solid;
+	border-color: #ddd #ddd #ddd #ddd;
+}
+.standard_form fieldset label {
+	font: 14px Helvetica,Arial, sans-serif;
+	font-weight: bold;
+	color: #939495;
+}
+.standard_form fieldset select {
+	background: #ffffff;
+}
+.standard_form fieldset .element_to_left {
+	float: left;
+}
+.standard_form fieldset .element_to_right {
+	float: right;
+	padding: 0 20px 0 0;
+}
+.standard_form fieldset .cb {
+	clear:both;
+}
+.standard_form hr {
+	border: none;
+	border-bottom: 2px dotted #939495;
+	height: 0;
+}

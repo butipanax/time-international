@@ -91,3 +91,24 @@ div.field,div.actions {
 	border: 1px solid #92A117;
 	float: left;
 }
+
+
+
+
+
+/*==========此处为临时css需要重组织=========================*/
+
+
+
+
+.cart_title {
+  font: 120% bold;
+}
+.item_price, #store .total_line {
+  text-align: right;
+}
+
+.total_line .total_cell {
+  font-weight: bold;
+  border-top: 1px solid #595;
+}

@@ -27,12 +27,14 @@ class Ability
 
     user ||= User.new
 
-    if user.role? :admin
+    if user.role? :admini
       can :manage, :all
     elsif user.role? :staff
-    #  can :manage, [Category,Product....]
+      can :manage, :all
     elsif user.role? :customer
-      #. can :read, .....
+      can :read, [Product,SerialNumber,Cart,DiscountDetail,Category,LineItem]
+      can :manage, Profile
+      can :create, [Order,LineItem,Cart]
     end
   end
 end

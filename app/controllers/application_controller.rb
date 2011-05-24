@@ -5,4 +5,20 @@ class ApplicationController < ActionController::Base
 #    flash[:error] = exception.message
 #    redirect_to root_url
 #  end
+
+
+
+
+def current_cart 
+  begin
+  Cart.find(session[:cart_id]) 
+  rescue ActiveRecord::RecordNotFound 
+    cart = Cart.create 
+    session[:cart_id] = cart.id 
+    cart
+  end
+end
+
+private :current_cart
+
 end

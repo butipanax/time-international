@@ -1,0 +1,51 @@
+<h1>Listing orders</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Email</th>
+    <th>Postcode</th>
+    <th>Telephone</th>
+    <th>Pay type</th>
+    <th>Taobao url</th>
+    <th>Taobao invoice number</th>
+    <th>Total price</th>
+    <th>Discount price</th>
+    <th>Invoice number</th>
+    <th>Order status</th>
+    <th>Shipping date</th>
+    <th>Close date</th>
+    <th>Cancel reason</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.name %></td>
+    <td><%= order.address %></td>
+    <td><%= order.email %></td>
+    <td><%= order.postcode %></td>
+    <td><%= order.telephone %></td>
+    <td><%= order.pay_type %></td>
+    <td><%= order.taobao_url %></td>
+    <td><%= order.taobao_invoice_number %></td>
+    <td><%= order.total_price %></td>
+    <td><%= order.discount_price %></td>
+    <td><%= order.invoice_number %></td>
+    <td><%= order.order_status %></td>
+    <td><%= order.shipping_date %></td>
+    <td><%= order.close_date %></td>
+    <td><%= order.cancel_reason %></td>
+    <td><%= link_to 'Show', order %></td>
+    <td><%= link_to 'Edit', edit_order_path(order) %></td>
+    <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Order', new_order_path %>

@@ -1,30 +1,9 @@
-<h3>商品列表</h3>
-<hr />
 
-<table>
-  <tr>
-  	<th>商品快照</th>
-    <th>商品名称</th>
-    <th>商品简介</th>
-    <th>价格</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @products.each do |product| %>
-  <tr>
-  	<td><%= image_tag product.photo.url(:thumb) %></td>
-    <td><%= product.title %></td>
-    <td><%= product.intro %></td>
-    <td><%= product.price %></td>
-    <td><%= link_to '查看', product %></td>
-    <td><%= link_to '编辑', edit_product_path(product) %></td>
-    <td><%= link_to '删除', product, :confirm => '确定删除该商品?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= render(:partial => "product", :collection => @products) %>
 
 <br />
 
-<%= link_to '新建商品', new_product_path %>
+<% if (user_signed_in? && (current_user.role?("admin") || current_user.role?("staff"))) %>
+  <%= link_to '新建商品', new_product_path %>
+<% end %>
+<p><%= will_paginate_with_i18n @products %></p>

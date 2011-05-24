@@ -36,7 +36,9 @@
                 <%= link_to '注册',new_user_registration_path,{:style=>'color:#f0f1a3'} %>
               </li>
             <% else %>
-              <li> 
+              <li> 欢迎您：
+				<%= current_user.email %>
+				|
                 <%= link_to '退出', destroy_user_session_path,{:style=>'color:#f0f1a3'} %>
                 |
                 <%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#f0f1a3'} %>
@@ -87,17 +89,21 @@
           <div class="gadget">   
             <div id="navigation">
               <ul>
-              	<% Category.where( :parent_id => nil ).each do |category| %>
-                  <li><%= link_to category.name, "/productslist/#{category.id}"%></li>
+				<% get_and_update_category_list.each do |key,value| %>
+                  <li><%= link_to key.name, "/productslist/#{key.id}"%></li>
                 	<ol> 
-                		<% Category.find_all_by_parent_id(category.id).each do |subCategory| %>
+                	<% value.each do |subCategory| %>
                       <li><%= link_to "- "+subCategory.name, "/productslist/#{subCategory.id}" %></li> 
-                		<% end %>
+                	<% end %>
                 	</ol>
 				<% end %>
               </ul>
               <div id="cart">
-                <strong>您的购物车:</strong> <br /> 0 件商品
+				<% if @cart %>
+                	<%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+                  		<%= render @cart %>
+                	<% end %>
+				<% end %>
               </div>
             </div>
           </div>

@@ -5,6 +5,6 @@
   <div class="price_line">
     <span class="price"><%= sprintf("￥%0.02f",product.price) %></span>
     <%= link_to '详细',"/products/#{product.id}" %> 
-    <%= link_to '购买' %>
+    <%= link_to '购买', line_items_path(:product_id => product), :method => :post, :remote=>true %>
   </div>
 </div>

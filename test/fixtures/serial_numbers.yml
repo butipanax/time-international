@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  serial_number_name: MyString
+  current_max_number: 1
+
+two:
+  serial_number_name: MyString
+  current_max_number: 1

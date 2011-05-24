@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  discount_rate: 9.99
+
+two:
+  discount_rate: 9.99
