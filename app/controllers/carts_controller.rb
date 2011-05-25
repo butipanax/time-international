@@ -79,9 +79,10 @@ class CartsController < ApplicationController
   def destroy
     @cart = current_cart
     @cart.destroy
+    @products = Product.all
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to(:controller => 'Products', :action => 'show_products_by_category', :category_id=> session[:current_category_id], :notice => "您的购物车已经被清空！") }
+      format.html { redirect_to(products_url, :notice => "您的购物车已经被清空！") }
       format.xml  { head :ok }
     end
   end

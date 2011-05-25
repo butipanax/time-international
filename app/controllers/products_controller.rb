@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products.xml
   def index
     @products = Product.all
-    @products = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 6
+    @products = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 5
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
       end
     end
     unless @products_list.empty?
-      @products_list = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 6
+      @products_list = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 5
     end
     render 'products/products_list'
   end

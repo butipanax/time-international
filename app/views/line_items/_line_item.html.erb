@@ -4,8 +4,8 @@
   <tr>
 <% end %>
   <td><%= line_item.quantity %>&times; </td>
-  <td><%= line_item.product.title %></td>
-  <td class="item_price"><%= number_to_currency(line_item.price,:unit=>"￥") %>
+  <td colspan="5"><%= line_item.product.title %></td>
+  <td colspan="3" class="item_price"><%= number_to_currency(line_item.price,:unit=>"￥") %>
   </td>
 </tr>
 

@@ -1,10 +1,18 @@
-<div class="entry">
-  <%= image_tag product.photo.url(:thumb) %>
-  <h4><%= product.title %></h4>
-  <%=  sanitize(product.intro) %>
-  <div class="price_line">
-    <span class="price"><%= sprintf("￥%0.02f",product.price) %></span>
-    <%= link_to '详细',"/products/#{product.id}" %> 
-    <%= link_to '购买', line_items_path(:product_id => product), :method => :post, :remote=>true %>
-  </div>
+<div class="simple">
+	<a href="#" class="image"> <%= image_tag product.photo.url(:thumb) %> </a>
+	<div class="info">
+		<h3><%= product.title %></h3>
+		<span><%= number_to_currency(product.price,:unit=>"￥") %></span>
+		<p>
+			<%= sanitize(product.intro) %>
+		</p>
+	</div>
+	<div class="cl">
+		&nbsp;
+	</div>
+	<%= link_to '详细',"/products/#{product.id}" %>
+	<%= link_to '购买', line_items_path(:product_id => product), :method => :post, :remote=>true %>
+	<div class="cl">
+		&nbsp;
+	</div>
 </div>

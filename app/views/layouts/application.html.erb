@@ -1,125 +1,121 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>Time international GmbH</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<head>
+		<title>Time international GmbH</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <%= stylesheet_link_tag :all %>
-    <%= javascript_include_tag :defaults %>
-    <%= csrf_meta_tag %>
+		<%= stylesheet_link_tag :all %>
+		<%= javascript_include_tag :defaults %>
+		<%= csrf_meta_tag %>
+	</head>
+	<body>
 
-  </head>
-  <body>
-    <div class="main">
-      <div class="header">
-        <div class="header_resize">
-          <div class="logo">
-            <h1>Time<span> international</span><small>e-commerce platform</small></a></h3>
-          </div>
-          <div class="menu_nav">
-            <div id="topmenu">
-              <ul>
-                <li id="current"><a href="index.html" title="" class="home">Home <span>欢迎光顾</span></a></li>
-                <li><a href="index.html" title="" class="about">About Us <span>公司信息</span></a></li>
-                <li><a href="index.html" title="" class="services">Services <span> 服务内容</span></a></li>   
-                <li><a href="index.html" title="" class="contact">Contact <span>联系我们</span></a></li>    
-              </ul>
-            </div>
-          </div>
-          <div class="clr"></div>
-          <div class="hbg">
-            <% if not user_signed_in? %>
-              <li>
-              <%= link_to '登录',new_user_session_path,{:style=>'color:#f0f1a3'} %>
-                | 
-                <%= link_to '注册',new_user_registration_path,{:style=>'color:#f0f1a3'} %>
-              </li>
-            <% else %>
-              <li> 欢迎您：
-				<%= current_user.email %>
-				|
-                <%= link_to '退出', destroy_user_session_path,{:style=>'color:#f0f1a3'} %>
-                |
-                <%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#f0f1a3'} %>
-              </li>
-            <% end %>  
-            <div class="clr"></div>
-          </div>
+		<div class="shell">
 
-        </div>
-        <div class="clr"></div>
-      </div>
+			<div id="header">
+				<span class="top-info"><strong>
+  					<% if not user_signed_in? %>
+              			<li>
+              			<%= link_to '登录',new_user_session_path,{:style=>'color:#f8379b'} %>
+                		| 
+                		<%= link_to '注册',new_user_registration_path,{:style=>'color:#f8379b'} %>
+              			</li>
+            		<% else %>
+              			<li> 
+						欢迎您！<%= current_user.email %> |
+                		<%= link_to '退出', destroy_user_session_path,{:style=>'color:#f8379b'} %>
+                		|
+                		<%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#f8379b'} %>
+              			</li>
+            		<% end %>  
+				</strong></span>
+               
+                <form action="" class="search" method="get">
+					<div class="fld">
+						<input type="text" class="field blink" title="search" value="search" />
+					</div>
+					<div class="btnp"><input type="submit" value="Go" /></div>
+				</form>
+			</div>
+		<div id="header2"> 			
+      			<div id="nav">
+        			<ul>
+        				<li><a href="index.html" class="current">网站首页</a></li>
+          				<li><a href="about.html">公司信息</a></li>
+          				<li><a href="privacy.html">服务内容</a></li>
+          				<li><a href="gallery.html">联系我们</a></li>
+   						<!-- <li><a href="contacts.html"></a></li> 
+          				<li><a href="sitemap.html"></a></li> -->
+        			</ul>
+      			</div>
+		</div>
 
-      <div class="content">
-        <div class="mainbar">
+			<div id="content">
+				<div id="main">
 
-            <% if notice %>
-              <div class = "flash_info">
-              	<p><%= notice %></p>
-               </div>
-            <% end %>
-            <% if alert %>
-              <div class = "flash_info">
-              	<p><%= alert %></p>
-              </div>
-            <% end %>
+					<% if notice %>
+					<div class = "flash_info">
+						<p>
+							<%= notice %>
+						</p>
+					</div>
+					<% end %>
+					<% if alert %>
+					<div class = "flash_info">
+						<p>
+							<%= alert %>
+						</p>
+					</div>
+					<% end %>
+					
+					<%= yield %>
+					
+				</div>
+				<div id="sidebar">
+					<div class="top">
+						<h2>我的购物车</h2>
+						<div id="cart">
+							<% if @cart %>
+								<%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+									<%= render @cart %>
+								<% end %>
+							<% else %>
+								<p>尚未购买任何商品</p>
+							<% end %>
+						</div>
+						<h2>商品目录</h2>
+						<ul class="pink">
+							<% get_and_update_category_list.each do |key,value| %>
+							<li>
+								<%= link_to key.name, "/productslist/#{key.id}"%>
+							</li>
+								<% value.each do |subCategory| %>
+								<p>	&nbsp;	&nbsp;
+									<%= link_to "→ "+subCategory.name, "/productslist/#{subCategory.id}" %>
+								</p>
+								<% end %>
+							<% end %>
+						</ul>
 
-          <div class="article">
-          <%= yield %>
-          </div>
-          <!-- <div class="pagenavi"><span class="pages">Page 1 of 2</span><span class="current">1</span><a href="#" title="2">2</a><a href="#" >&raquo;</a></div> -->
-        </div>
-
-
-        <div class="sidebar">
-
-          <div class="gadget">
-            <div class="search">
-              <form method="get" id="search" action="">
-                <span>
-                  <input type="text" value="Search..." name="s" id="s" />
-                  <input name="searchsubmit" type="image" src="images/search.gif" value="Go" id="searchsubmit" class="btn"  />
-                </span>
-              </form>
-              <!--/searchform -->
-              <div class="clr"></div>
-            </div>
-          </div>
-          <div class="gadget">   
-            <div id="navigation">
-              <ul>
-				<% get_and_update_category_list.each do |key,value| %>
-                  <li><%= link_to key.name, "/productslist/#{key.id}"%></li>
-                	<ol> 
-                	<% value.each do |subCategory| %>
-                      <li><%= link_to "- "+subCategory.name, "/productslist/#{subCategory.id}" %></li> 
-                	<% end %>
-                	</ol>
-				<% end %>
-              </ul>
-              <div id="cart">
-				<% if @cart %>
-                	<%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
-                  		<%= render @cart %>
-                	<% end %>
-				<% end %>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="clr"></div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="footer_resize">
-        <p class="cf">Designed for: <a href="#">Time international GmbH - 2011</a>.</p>
-        <!--     <p class="rf">Thanks: <a href="http://www.cssmoban.com/" title="网页模板">cssMoban.com</a></p> -->
-        <div class="clr"></div>
-      </div>
-    </div>
-  </body>
+					</div>
+				</div>
+			</div>
+			<div class="cl">
+				&nbsp;
+			</div>
+			<div id="footer">
+				<div class="right-area">
+					<p>
+						Designed for
+						<em>Time international GmbH</em> - 2011
+					</p>
+				</div>
+				<div class="cl">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
 

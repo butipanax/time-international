@@ -8,6 +8,18 @@
 .standard_form fieldset p{
 	margin: 5px 0 5px 0;
 }
+
+.standard_form input {
+	font: 14px Helvetica,Arial, sans-serif;
+	color: #939495;
+	padding: 2px 5px 2px 5px;
+	margin-top:2px;
+	font-weight: bold;
+	background: #fdfdfd;
+	border-width: thin thin thin thin;
+	border-style: solid;
+	border-color: #ddd #ddd #ddd #ddd;
+}
 .standard_form fieldset input {
 	font: 14px Helvetica,Arial, sans-serif;
 	color: #939495;
