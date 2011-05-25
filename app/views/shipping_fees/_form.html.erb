@@ -1,0 +1,25 @@
+<%= form_for(@shipping_fee) do |f| %>
+  <% if @shipping_fee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shipping_fee.errors.count, "error") %> prohibited this shipping_fee from being saved:</h2>
+
+      <ul>
+      <% @shipping_fee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

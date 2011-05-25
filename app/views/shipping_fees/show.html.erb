@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Weight:</b>
+  <%= @shipping_fee.weight %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @shipping_fee.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_shipping_fee_path(@shipping_fee) %> |
+<%= link_to 'Back', shipping_fees_path %>

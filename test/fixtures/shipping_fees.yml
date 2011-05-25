@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  weight: 9.99
+  price: 9.99
+
+two:
+  weight: 9.99
+  price: 9.99

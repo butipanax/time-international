@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
       end
     end
     unless @products_list.empty?
-      @products_list = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 5
+      @products_list = @products_list.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 5
     end
     render 'products/products_list'
   end

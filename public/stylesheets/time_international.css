@@ -30,23 +30,54 @@ a:hover{
 a img{
     border:0;
 }
-
+p{
+	padding: 3px 2px 3px 2px;
+}
+input {
+	font: 14px Helvetica,Arial, sans-serif;
+	color: #939495;
+	padding: 2px 5px 2px 5px;
+	margin-top:2px;
+	font-weight: bold;
+	background: #fdfdfd;
+	border-width: thin thin thin thin;
+	border-style: solid;
+	border-color: #ddd #ddd #ddd #ddd;
+}
+select {
+	background: #ffffff;
+}
+label {
+	font: 14px Helvetica,Arial, sans-serif;
+	font-weight: bold;
+	color: #939495;
+}
 li{list-style-type: none;}
 h2{font-size: 20px; color:#2a2a2a; font-weight: normal; text-transform: uppercase; font-family: georgia, sans-serif; padding-bottom:8px; border-bottom:solid 2px #dedede; margin-right:5px}
 h3{color:#0f89df; font-size: 15px; font-family: "trebuchet ms", sans-serif; text-transform: uppercase; line-height: 18px;}
 ul{list-style-type: none;}
 
 .flash_info {
+font-weight:bold;
 margin-top: 10px;
-border: 2px solid #f8379b;
-padding-left: 10px;
+border: 3px solid red;
+padding: 10px 10px 10px 10px;
 margin-left:10px;
 margin-bottom: 10px;
 background-color: #fbfbfb;
 width: 450px;
 }
-
-
+fieldset {
+padding:10px;
+margin:2px;
+width:570px;
+color:#333;
+border:#f8379b dashed 1px;
+}
+legend {
+color:#f8379b;
+font-weight:bold;
+} 
 	/* Header */
 #header {height:55px;}
 #header .top-info {font-size: 13px; color:#0f89df; float: left; padding-left:0px;padding-top:20px}
@@ -153,24 +184,75 @@ body{
     line-height:14px;
     padding-bottom:70px;
 }
-
+span{
+	line-height:24px;
+}
 .shell{width:930px; margin:0 auto}
 #content{padding-top:8px;}
 
-#main{width:623px; height: 970px; float: right; display: inline; background:#fff; border:solid 1px #dcdcdc;}
+#main{	
+	width:623px; 
+	height: 970px; 
+	float: right; 
+	display: inline; 
+	background:#fff; 
+	border:solid 1px #dcdcdc;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 0px 0px 5px #c6c6bf;
+	-khtml-box-shadow: 0px 0px 5px #c6c6bf;
+	-webkit-box-shadow: 0px 0px 5px #c6c6bf;
+	box-shadow: 0px 0px 5px #c6c6bf;
+}
 #main .simple {width:609px; height: 150px; background:#fff; border:solid 1px #dcdcdc; padding-top:12px; padding-left:12px; padding-bottom:10px; margin-bottom:1px}
+#main .simple_content {width:609px; background:#fff; border:solid 1px #dcdcdc; padding-top:12px; padding-left:12px; padding-bottom:10px; margin-bottom:1px}
 #main .simple .holder{width:143px; float: left; display: inline; margin-right:9px}
-#main .simple a{ color:#0f89df; text-decoration: none;}
+#main .simple a{ font-size: 1.1em;color:#0f89df; text-decoration: none;}
 #main .simple a:hover{ color:#ff00d2; }
 #main .simple a.image{float: left; display: inline;}
 #main .simple a.image img{display: block; padding:4px; border:solid 1px #dedede;}
 .info{float: left; display: inline; width:420px; padding-left:8px}
-.info span{color:red;font-weight:bold; display: block;}
+.info span{color:#f8379b;font-weight:bold; display: block;}
 .info p{padding-bottom:15px}
 
+#main .simple_content table {
+	border-collapse: collapse;
+	border: 1px solid #000;
+	font: normal 80%/140% arial, helvetica, sans-serif;
+	color: #555;
+	width: 565px;
+	table-layout:fixed;
+}
+
+#main .simple_content table td {text-align: center;border: 1px dotted #bbb;padding: .5em; overflow:hidden;} 
+#main .simple_content table th {border: 1px dotted #bbb;padding: .5em;font-size:1.2em;}
+#main .simple_content table .tfoot{
+	background-color: #f8f8f8;
+}
 
 
-#sidebar{width:301px; height: 970px; float: left; display: inline; background:url(/images/sidebar.gif) repeat-y; border-bottom:solid 1px #dcdcdc}
+
+
+#sidebar {
+		width:301px;
+		height: 970px;
+		float: left;
+		display: inline;
+		background:url(/images/sidebar.gif) repeat-y;
+		border-bottom:solid 1px #dcdcdc;
+		-moz-border-radius: 10px;
+		-khtml-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+		border-radius: 10px;
+		-moz-box-shadow: 0px 0px 5px #c6c6bf;
+		-khtml-box-shadow: 0px 0px 5px #c6c6bf;
+		-webkit-box-shadow: 0px 0px 5px #c6c6bf;
+		box-shadow: 0px 0px 5px #c6c6bf;
+	}
 #sidebar .top{width:291px;  background:url(/images/sidebar-top.gif) no-repeat; padding-top:15px; padding-left:10px;border-bottom:solid 2px #dedede;}
 #cart{padding-top:12px;  margin-bottom:15px}
 #cart p{color: #f8379b;}
@@ -186,6 +268,24 @@ body{
 #sidebar ul.pink p{font-size:1em;padding-bottom:10px;}
 #sidebar ul.pink p a{color:#f8379b; text-decoration: none;}
 
-#footer{background:#fff; border:solid 1px #dcdcdc; height:70px; font-size: 10px; color:#515151; text-transform: uppercase; font-family: "trebuchet ms", sans-serif; text-align: right;}
+#footer {
+		background:#fff;
+		border:solid 1px #dcdcdc;
+		height:70px;
+		font-size: 10px;
+		color:#515151;
+		text-transform: uppercase;
+		font-family: "trebuchet ms", sans-serif;
+		text-align: right;
+		-moz-border-radius: 10px;
+		-khtml-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+		border-radius: 10px;
+		-moz-box-shadow: 0px 0px 5px #c6c6bf;
+		-khtml-box-shadow: 0px 0px 5px #c6c6bf;
+		-webkit-box-shadow: 0px 0px 5px #c6c6bf;
+		box-shadow: 0px 0px 5px #c6c6bf;
+	}
 #footer .right-area{float: right; display: inline; padding-top:25px; padding-right:17px}#footer a.sm-logo{background:url(images/fashion.gif); width:155px; height:34px; float: left; text-indent: -4000px; line-height: 0; font-size: 0; margin:16px 0 0 20px; text-align: left;}
 #footer .right-area em{color:#f8379b; }

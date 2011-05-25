@@ -13,28 +13,28 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label '收货人姓名：' %><br />
     <%= f.text_field :name, :size => 10 %>
   </div>
   <div class="field">
-    <%= f.label :address %><br />
+    <%= f.label '收货人地址：' %><br />
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :postcode %><br />
+    <%= f.label '邮政编码：' %><br />
     <%= f.text_field :postcode %>
   </div>
   <div class="field">
-    <%= f.label :telephone %><br />
+    <%= f.label 'email地址：' %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label '联系电话：' %><br />
     <%= f.text_field :telephone %>
   </div>
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '确认购买' %>
   </div>
 <% end %>

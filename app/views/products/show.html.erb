@@ -1,4 +1,4 @@
-<div class="art">
+<div class="simple_content">
 
 <p>
 <div class="content_border">
@@ -22,7 +22,7 @@
   <%= @product. intro %>
 </p>
 <p>
-  <b>商品介绍:</b>
+  <b>商品介绍:</b><br />
   <%= @product.description.html_safe %>
 </p>
 
@@ -31,8 +31,12 @@
   <%= @product.price %>
 </p>
 
-</div>
+
        
-<div class="clr"></div><br />
-<%= link_to '编辑', edit_product_path(@product) %> |
-<%= link_to '返回', products_path %>
+<div class="cl"></div><br />
+	<% if user_signed_in? %>
+		<% if (current_user.role?("admin") || current_user.role?("staff")) %>
+			<%= link_to '编辑', edit_product_path(@product) %> |
+		<% end %>
+	<% end %>
+</div>

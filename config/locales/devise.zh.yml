@@ -6,6 +6,7 @@ zh:
       not_locked: "没有锁定"
   devise:
     failure:
+      already_authenticated: '错误：该email已经被注册过，请重新注册'
       unauthenticated: '继续操作前请注册或者登录.'
       unconfirmed: '请先激活您的帐号'
       locked: '您的帐号已被锁定.'

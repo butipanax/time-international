@@ -2,6 +2,7 @@
 
 class Product < ActiveRecord::Base
   validates :title,:intro, :category_id, :description, :price, :presence => true
+  validates_length_of :intro, :maximum => 129
   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   has_many :line_items
   before_destroy :ensure_not_referenced_by_line_item

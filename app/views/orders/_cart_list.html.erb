@@ -1,28 +1,29 @@
-<table cellpadding="5",cellspacing="15">
+<table>
 	<tr>
-		<th>商品名称</th>
-		<th>商品单价</th>
-		<th>购买数量</th>
-		<th>价格</th>
-		<th>会员折扣</th>
-		<th>折扣后价格</th>
+		<th colspan=4>商品名称</th>
+		<th colspan=2>单价</th>
+		<th colspan=1>购买数量</th>
+		<th colspan=2>价格</th>
+		<th colspan=1>会员折扣</th>
+		<th colspan=2>折扣后价格</th>
 	</tr>
+	<% total_discount_price = 0 %>
 	<% @cart.line_items.each do |line_item| %>
+	<% total_discount_price += line_item.price * @discount_rate %>
 	<tr>
-		<td><%= line_item.product.title %></td>
-		<td><%= line_item.product.price %></td>
-		<td><%= line_item.quantity %></td>
-		<td><%= number_to_currency(line_item.price,:unit=>"￥") %></td>
-		<td><%= @discount_rate %></td>
-		<td><%= number_to_currency(line_item.price * @discount_rate, :unit => "￥")%></td>		
+		<td colspan=4><%= line_item.product.title %></td>
+		<td colspan=2><%= number_to_currency(line_item.product.price,:unit=>"￥")  %></td>
+		<td colspan=1><%= line_item.quantity %></td>
+		<td colspan=2><%= number_to_currency(line_item.price,:unit=>"￥") %></td>
+		<td colspan=1><%= @discount_rate %></td>
+		<td colspan=2><%= number_to_currency(line_item.price * @discount_rate, :unit => "￥")%></td>		
 	</tr>
 	<% end %>
-	<tr>
-    <td>总计金额:</td>
-    <td><%= number_to_currency(@cart.total_price, :unit=>"￥") %></td>
-    <td>会员折扣:</td>
-    <td><%= @discount_rate %></td>
-    <td>总计支付金额:</td>
-    <td><%= number_to_currency(@cart.total_price*@discount_rate, :unit=>"￥") %></td>
+	<tr class="tfoot">
+    <td colspan=3>总计金额:</td>
+    <td colspan=3><%= number_to_currency(@cart.total_price, :unit=>"￥") %></td>
+
+    <td colspan=3>总计支付金额:</td>
+    <td colspan=3><%= number_to_currency(total_discount_price, :unit=>"￥") %></td>
 	</tr>
 </table>

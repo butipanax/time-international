@@ -12,6 +12,12 @@
 	</div>
 	<%= link_to '详细',"/products/#{product.id}" %>
 	<%= link_to '购买', line_items_path(:product_id => product), :method => :post, :remote=>true %>
+	<% if user_signed_in? %>
+		<% if (current_user.role?("admin") || current_user.role?("staff")) %>
+    		<%= link_to '编辑', edit_product_path(product) %>
+   		 	<%= link_to '删除', product, :confirm => '确定删除？', :method => :delete %>
+		<% end %>
+	<% end %>
 	<div class="cl">
 		&nbsp;
 	</div>

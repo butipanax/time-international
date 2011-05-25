@@ -1,4 +1,6 @@
 TimeInternationalECommerce::Application.routes.draw do
+  resources :shipping_fees
+
   resources :discount_details
 
   resources :orders

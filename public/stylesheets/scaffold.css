@@ -38,13 +38,13 @@ div.field,div.actions {
 
 .field_with_errors {
 	padding: 2px;
-	background-color: #fddb19;
+	background-color: red;
 	display: table;
 }
 
 #error_explanation {
 	width: 450px;
-	border: 2px solid #fddb19;
+	border: 2px solid red;
 	padding: 7px;
 	padding-bottom: 0;
 	margin-bottom: 20px;
@@ -58,45 +58,16 @@ div.field,div.actions {
 	font-size: 12px;
 	margin: -7px;
 	margin-bottom: 0px;
-	background-color: #fddb19;
+	background-color: red;
 	color: #fff;
 }
 
 #error_explanation ul li {
+	list-style-type: none;
 	font-size: 12px;
 	list-style: square;
 }
 
-.art {
-	width: 650px;
-	display: block;
-	background: white;
-	border: 1px solid #92A117; /*rgba ie fix*/
-	-moz-border-radius: 10px;
-	-khtml-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	border-radius: 10px;
-	-moz-box-shadow: 0px 0px 5px #c6c6bf;
-	-khtml-box-shadow: 0px 0px 5px #c6c6bf;
-	-webkit-box-shadow: 0px 0px 5px #c6c6bf;
-	box-shadow: 0px 0px 5px #c6c6bf;
-	margin-top: 10px;
-	padding: 10px 10px;
-	overflow: auto;
-	float: left;
-}
-
-.content_border {
-	border: 1px solid #92A117;
-	float: left;
-}
-
-
-
-
-
-/*==========此处为临时css需要重组织=========================*/
 
 
 

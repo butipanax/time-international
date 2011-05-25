@@ -3,7 +3,4 @@
 
 <br />
 
-<% if (user_signed_in? && (current_user.role?("admin") || current_user.role?("staff"))) %>
-  <%= link_to '新建商品', new_product_path %>
-<% end %>
 <p><%= will_paginate_with_i18n @products %></p>
