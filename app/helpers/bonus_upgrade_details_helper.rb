@@ -1,0 +1,2 @@
+module BonusUpgradeDetailsHelper
+end

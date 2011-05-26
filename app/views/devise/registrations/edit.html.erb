@@ -1,11 +1,13 @@
+<div class="simple_content">
 <% if not @user.profile %>
 	<%= render(:partial => "profile", :object => @user.build_profile) %>
 <% else %>
 	<%= render(:partial => "profile", :object => @user.profile) %>
 <% end %>
 
-<h3> 更新账户密码：</h3>
-<hr />
+<br />
+<h2> 更新账户密码：</h2>
+<br />
   
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <% if resource.errors.any? %>
@@ -39,3 +41,4 @@
 <p>不满意？ <%= link_to "取消帐号", registration_path(resource_name), :confirm => "确定取消此帐号？", :method => :delete %>.</p>
 
 <%= link_to "回退", :back %>
+</div>

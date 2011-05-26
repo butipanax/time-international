@@ -1,4 +1,10 @@
 #encoding: utf-8
+require 'digest/md5'
+require 'net/http'
+require 'open-uri'
+require 'iconv'
+require 'cgi'
+require 'rexml/document'
 
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
@@ -29,8 +35,8 @@ class OrdersController < ApplicationController
   def new
     @cart = current_cart
     if @cart.line_items.empty?
-      redirect_to :controller => 'Products', :action => 'show_products_by_category', :notice => "您尚未购买任何产品！"
-    return
+      redirect_to products_url, :notice => "您尚未购买任何产品！"
+      return
     end
 
     @order = Order.new
@@ -63,6 +69,11 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @cart = current_cart
+    if @cart.line_items.empty?
+      redirect_to products_url, :notice => "您尚未购买任何产品！"
+      return
+    end
+    
     profile = current_user.profile
     @discount_rate = 1
     
@@ -73,6 +84,14 @@ class OrdersController < ApplicationController
     @order.user_id = current_user.id
     @order.total_price = @cart.total_price
     @order.discount_price = @discount_rate * @cart.total_price
+    
+    total_weight=0
+    @cart.line_items.each do |line_item|
+      total_weight += line_item.product.weight*line_item.quantity
+    end
+    
+    @order.shipping_price = ((total_weight / 5).to_i + 1)*ShippingFee.find_by_weight(5).price
+    @order.pay_price = @order.shipping_price + @order.discount_price
 
     tmp_number_string = 0
     SerialNumber.transaction do
@@ -84,15 +103,27 @@ class OrdersController < ApplicationController
     end
 
     @order.invoice_number =  "TIG"<<tmp_number_string[1,tmp_number_string.length]
-    @order.order_status = 1
+    @order.order_status = OrderStatus.find_by_id(1)
+    title="婴儿营养品" << tmp_number_string[1,tmp_number_string.length]
+   
+    xml_data = Net::HTTP.get_response(getRequestUrl(title,@order.pay_price)).body
+    doc = REXML::Document.new(xml_data)
+    taobao_id = doc.elements['item_add_response/item/iid'].text
+    xml_data2 = Net::HTTP.get_response(getRequestUrl2(taobao_id)).body
+    doc2 =REXML::Document.new(xml_data2)
+    taobao_url = doc2.elements['item_get_response/item/detail_url'].text
+ 
+    @order.taobao_invoice_number = taobao_id
+    @order.taobao_url=taobao_url
     
-
     respond_to do |format|
       if @order.save 
         @cart.line_items.each do |line_item|
           line_item.update_attribute(:order_id, @order.id)
         end
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
+        @cart = nil
+        session[:cart_id] = nil
+        format.html { render 'orders/order_confirmation' }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
         format.html { render :action => "new" }
@@ -132,4 +163,72 @@ class OrdersController < ApplicationController
   def order_search_form
     render 'orders/order_search_form'
   end
+  
+ def getArgumentPara(title,price)
+ 
+    price_string = price.to_s
+
+    paramArray = {
+      'app_key'=>'12219070',
+      'method'=>'taobao.item.add',
+      'format'=>'xml',
+      'v'=>'2.0',
+      'timestamp'=>Time.new().strftime("%Y-%m-%d %H:%M:%S"),
+      'num'=>1.to_s,
+      'price'=>price_string,
+      'type'=>'fixed',
+      'stuff_status'=>'new',
+      'title'=>title,
+      'desc'=>'婴儿营养或辅助类产品',
+      'location.state'=>'上海',
+      'location.city'=>'上海',
+      'cid'=>'50018837'
+    }
+  end
+
+  def getArgumentPara2(taobao_id)
+
+    paramArray = {
+      'app_key'=>'12219070',
+      'method'=>'taobao.item.get',
+      'format'=>'xml',
+      'v'=>'2.0',
+      'timestamp'=>Time.new().strftime("%Y-%m-%d %H:%M:%S"),
+      'fields'=>'detail_url',
+      'num_iid'=>taobao_id
+    }
+  end
+
+  def sign(param,sercetCode)
+    Digest::MD5.hexdigest('sandbox36f17baa86659f353f9f8a88a' + param.sort.flatten.join).upcase
+  end
+
+  #组装请求参数
+
+  def createRequestParam(paramArray)
+    array = paramArray.sort()
+    i = 0
+    str = ''
+    while i < paramArray.length()
+      temp = array[i]
+      str = str + temp[0] + '=' + CGI.escape(temp[1]) + '&'
+      i = i + 1
+    end
+    return str
+  end
+
+  def getRequestUrl(title,price)
+    #url = 'http://gw.api.taobao.com/router/rest?'
+    url = 'http://gw.api.tbsandbox.com/router/rest?'
+    url = url + createRequestParam(getArgumentPara(title,price))+'sign=' + sign(getArgumentPara(title,price),'sandbox36f17baa86659f353f9f8a88a')
+    parsedURL = URI.parse(url)
+  end
+
+  def getRequestUrl2(taobao_id)
+    url = 'http://gw.api.tbsandbox.com/router/rest?'
+    url = url + createRequestParam(getArgumentPara2(taobao_id))+'sign=' + sign(getArgumentPara2(taobao_id),'sandbox36f17baa86659f353f9f8a88a')
+    parsedURL = URI.parse(url)
+  end
+
+
 end

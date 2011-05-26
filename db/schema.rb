@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525163810) do
+ActiveRecord::Schema.define(:version => 20110525215300) do
+
+  create_table "bonus_upgrade_details", :force => true do |t|
+    t.string   "objective_name"
+    t.integer  "bonus_reward_score"
+    t.decimal  "bonus_reward_price"
+    t.integer  "upgrade_count"
+    t.integer  "upgrade_level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at"
@@ -84,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20110525163810) do
     t.text     "cancel_reason"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "shipping_price",        :precision => 10, :scale => 2
+    t.decimal  "pay_price",             :precision => 10, :scale => 2
   end
 
   create_table "products", :force => true do |t|

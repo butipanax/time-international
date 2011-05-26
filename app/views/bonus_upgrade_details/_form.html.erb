@@ -1,0 +1,37 @@
+<%= form_for(@bonus_upgrade_detail) do |f| %>
+  <% if @bonus_upgrade_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bonus_upgrade_detail.errors.count, "error") %> prohibited this bonus_upgrade_detail from being saved:</h2>
+
+      <ul>
+      <% @bonus_upgrade_detail.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :objective_name %><br />
+    <%= f.text_field :objective_name %>
+  </div>
+  <div class="field">
+    <%= f.label :bonus_reward_score %><br />
+    <%= f.text_field :bonus_reward_score %>
+  </div>
+  <div class="field">
+    <%= f.label :bonus_reward_price %><br />
+    <%= f.text_field :bonus_reward_price %>
+  </div>
+  <div class="field">
+    <%= f.label :upgrade_count %><br />
+    <%= f.text_field :upgrade_count %>
+  </div>
+  <div class="field">
+    <%= f.label :upgrade_level %><br />
+    <%= f.text_field :upgrade_level %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

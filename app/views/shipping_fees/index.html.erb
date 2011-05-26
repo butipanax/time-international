@@ -1,25 +1,25 @@
-<h1>Listing shipping_fees</h1>
+<div class="simple_content">
+<h2>运输费用表：</h2>
+<br/>
 
 <table>
   <tr>
-    <th>Weight</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>重量：</th>
+    <th>价格：</th>
   </tr>
 
 <% @shipping_fees.each do |shipping_fee| %>
   <tr>
     <td><%= shipping_fee.weight %></td>
     <td><%= shipping_fee.price %></td>
-    <td><%= link_to 'Show', shipping_fee %></td>
-    <td><%= link_to 'Edit', edit_shipping_fee_path(shipping_fee) %></td>
-    <td><%= link_to 'Destroy', shipping_fee, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to '查看', shipping_fee %></td>
+    <td><%= link_to '编辑', edit_shipping_fee_path(shipping_fee) %></td>
+    <td><%= link_to '删除', shipping_fee, :confirm => '确定删除？', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Shipping fee', new_shipping_fee_path %>
+<%= link_to '新增', new_shipping_fee_path %>
+</div>

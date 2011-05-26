@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  objective_name: MyString
+  bonus_reward_score: 1
+  bonus_reward_price: 9.99
+  upgrade_count: 1
+  upgrade_level: 1
+
+two:
+  objective_name: MyString
+  bonus_reward_score: 1
+  bonus_reward_price: 9.99
+  upgrade_count: 1
+  upgrade_level: 1

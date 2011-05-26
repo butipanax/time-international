@@ -1,5 +1,5 @@
 <table>
-	<tr>
+	<tr class="tfoot">
 		<th colspan=4>商品名称</th>
 		<th colspan=2>单价</th>
 		<th colspan=1>购买数量</th>
@@ -16,14 +16,63 @@
 		<td colspan=1><%= line_item.quantity %></td>
 		<td colspan=2><%= number_to_currency(line_item.price,:unit=>"￥") %></td>
 		<td colspan=1><%= @discount_rate %></td>
-		<td colspan=2><%= number_to_currency(line_item.price * @discount_rate, :unit => "￥")%></td>		
+		<td colspan=2><%= number_to_currency(line_item.price * @discount_rate, :unit => "￥")%></td>			
 	</tr>
 	<% end %>
 	<tr class="tfoot">
-    <td colspan=3>总计金额:</td>
-    <td colspan=3><%= number_to_currency(@cart.total_price, :unit=>"￥") %></td>
+    <td colspan=4>总计商品金额:</td>
+    <td colspan=2><%= number_to_currency(@cart.total_price, :unit=>"￥") %></td>
 
-    <td colspan=3>总计支付金额:</td>
-    <td colspan=3><%= number_to_currency(total_discount_price, :unit=>"￥") %></td>
+    <td colspan=4>折扣后总计商品金额:</td>
+    <td colspan=2><%= number_to_currency(total_discount_price, :unit=>"￥") %></td>
+	</tr>
+</table>
+
+<br />
+
+<table>
+
+	<tr class="tfoot">
+		<th colspan=7>商品名称</th>
+		<th colspan=2>单件重量</th>
+		<th colspan=1>购买数量</th>
+		<th colspan=2>合计重量</th>
+
+	</tr>
+	<% total_weight = 0 %>
+	<% @cart.line_items.each do |line_item| %>
+	<% total_weight += line_item.product.weight*line_item.quantity %>
+	<tr>
+		<td colspan=7><%= line_item.product.title %></td>
+		<td colspan=2><%= line_item.product.weight %> kg </td>
+		<td colspan=1><%= line_item.quantity %></td>
+		<td colspan=2><%= line_item.product.weight * line_item.quantity %> kg </td>
+			
+	</tr>
+	<% end %>
+	<% five_kilo_price = ShippingFee.find_by_weight(5).price %>
+	<tr class="tfoot">
+    <td colspan=2>总计重量:</td>
+    <td colspan=2><%= total_weight %> kg </td>
+    <td colspan=2>包裹单价(5kg):</td>
+    <td colspan=2><%= number_to_currency(five_kilo_price,:unit=>"￥") %> </td>
+    <td colspan=2>总计包裹金额:</td>
+    <td colspan=2><%= number_to_currency(((total_weight / 5).to_i + 1)*five_kilo_price,:unit=>"￥") %></td>
+	<tr/>
+</table>
+
+<br />
+
+<table>
+	<tr class="tfoot">
+    <td colspan=2><strong>折扣后总计商品金额:</strong></td>
+    <td colspan=2><strong><%= number_to_currency(@cart.total_price, :unit=>"￥") %></strong></td>
+
+    <td colspan=2><strong>总计包裹金额:</strong></td>
+    <td colspan=2><strong><%= number_to_currency(((total_weight / 5).to_i + 1)*five_kilo_price,:unit=>"￥") %></strong></td>
+
+    <td colspan=2><strong>您需要支付:</strong></td>
+    <td colspan=2><strong><%= number_to_currency(total_discount_price + ((total_weight / 5).to_i + 1)*five_kilo_price, :unit=>"￥") %></strong></td>
+
 	</tr>
 </table>

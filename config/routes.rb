@@ -1,4 +1,6 @@
 TimeInternationalECommerce::Application.routes.draw do
+  resources :bonus_upgrade_details
+
   resources :shipping_fees
 
   resources :discount_details
@@ -24,7 +26,6 @@ TimeInternationalECommerce::Application.routes.draw do
   get "main/index"
 
   match 'productslist/:category_id' => "Products#show_products_by_category"
-
   match 'order_search_form' => "Orders#order_search_form"
  
   # The priority is based upon order of creation:

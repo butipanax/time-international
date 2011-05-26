@@ -1,15 +1,19 @@
+<div class="simple_content">
+<br />
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Weight:</b>
+  <b>重量：</b>
   <%= @shipping_fee.weight %>
 </p>
 
 <p>
-  <b>Price:</b>
+  <b>价格：</b>
   <%= @shipping_fee.price %>
 </p>
 
 
-<%= link_to 'Edit', edit_shipping_fee_path(@shipping_fee) %> |
-<%= link_to 'Back', shipping_fees_path %>
+<%= link_to '编辑', edit_shipping_fee_path(@shipping_fee) %> |
+<%= link_to '返回', shipping_fees_path %>
+
+</div>

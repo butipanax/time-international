@@ -1,0 +1,31 @@
+<h1>Listing bonus_upgrade_details</h1>
+
+<table>
+  <tr>
+    <th>Objective name</th>
+    <th>Bonus reward score</th>
+    <th>Bonus reward price</th>
+    <th>Upgrade count</th>
+    <th>Upgrade level</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bonus_upgrade_details.each do |bonus_upgrade_detail| %>
+  <tr>
+    <td><%= bonus_upgrade_detail.objective_name %></td>
+    <td><%= bonus_upgrade_detail.bonus_reward_score %></td>
+    <td><%= bonus_upgrade_detail.bonus_reward_price %></td>
+    <td><%= bonus_upgrade_detail.upgrade_count %></td>
+    <td><%= bonus_upgrade_detail.upgrade_level %></td>
+    <td><%= link_to 'Show', bonus_upgrade_detail %></td>
+    <td><%= link_to 'Edit', edit_bonus_upgrade_detail_path(bonus_upgrade_detail) %></td>
+    <td><%= link_to 'Destroy', bonus_upgrade_detail, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bonus upgrade detail', new_bonus_upgrade_detail_path %>
