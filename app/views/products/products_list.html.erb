@@ -1,6 +1,8 @@
 <% if (@products_list && @products_list.size > 0) %>
-  <%= render(:partial => "product", :collection => @products_list) %>
-	<p><%= will_paginate_with_i18n @products_list%></p>
+  	<%= render(:partial => "product", :collection => @products_list) %>
+	<div class="simple_content">
+		<p><%= will_paginate_with_i18n @products_list %></p>
+	</div>
 <% end %>
 
 

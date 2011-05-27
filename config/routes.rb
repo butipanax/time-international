@@ -23,10 +23,11 @@ TimeInternationalECommerce::Application.routes.draw do
 
   devise_for :users
 
-  get "main/index"
+  get "main/index" => "main#index", :as=>'management'
 
   match 'productslist/:category_id' => "Products#show_products_by_category"
   match 'order_search_form' => "Orders#order_search_form"
+  match 'orderconfirmation/:id' => "Orders#order_confirmation"
  
   # The priority is based upon order of creation:
   # first created -> highest priority.

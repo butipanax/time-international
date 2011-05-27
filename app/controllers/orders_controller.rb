@@ -29,7 +29,13 @@ class OrdersController < ApplicationController
       format.xml  { render :xml => @order }
     end
   end
-
+  
+  def order_confirmation
+    @order = Order.find(params[:id])
+    render 'orders/order_confirmation'
+  
+  end
+  
   # GET /orders/new
   # GET /orders/new.xml
   def new
@@ -70,8 +76,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     @cart = current_cart
     if @cart.line_items.empty?
-      redirect_to products_url, :notice => "您尚未购买任何产品！"
-      return
+      redirect_to products_url, :notice => "您的购物车已经被清空！" and return
     end
     
     profile = current_user.profile
@@ -90,6 +95,7 @@ class OrdersController < ApplicationController
       total_weight += line_item.product.weight*line_item.quantity
     end
     
+    @order.package_count = (total_weight / 5).to_i + 1
     @order.shipping_price = ((total_weight / 5).to_i + 1)*ShippingFee.find_by_weight(5).price
     @order.pay_price = @order.shipping_price + @order.discount_price
 
@@ -106,15 +112,17 @@ class OrdersController < ApplicationController
     @order.order_status = OrderStatus.find_by_id(1)
     title="婴儿营养品" << tmp_number_string[1,tmp_number_string.length]
    
-    xml_data = Net::HTTP.get_response(getRequestUrl(title,@order.pay_price)).body
-    doc = REXML::Document.new(xml_data)
-    taobao_id = doc.elements['item_add_response/item/iid'].text
-    xml_data2 = Net::HTTP.get_response(getRequestUrl2(taobao_id)).body
-    doc2 =REXML::Document.new(xml_data2)
-    taobao_url = doc2.elements['item_get_response/item/detail_url'].text
- 
-    @order.taobao_invoice_number = taobao_id
-    @order.taobao_url=taobao_url
+    if @order.pay_type == 'pay_taobao'
+      xml_data = Net::HTTP.get_response(getRequestUrl(title,@order.pay_price)).body
+      doc = REXML::Document.new(xml_data)
+      taobao_id = doc.elements['item_add_response/item/iid'].text
+      xml_data2 = Net::HTTP.get_response(getRequestUrl2(taobao_id)).body
+      doc2 =REXML::Document.new(xml_data2)
+      taobao_url = doc2.elements['item_get_response/item/detail_url'].text
+
+      @order.taobao_invoice_number = taobao_id
+      @order.taobao_url=taobao_url
+    end
     
     respond_to do |format|
       if @order.save 
@@ -123,7 +131,7 @@ class OrdersController < ApplicationController
         end
         @cart = nil
         session[:cart_id] = nil
-        format.html { render 'orders/order_confirmation' }
+        format.html { render 'orders/order_confirmation', :notice => '订单成功生成，购物车重新置空！' }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
         format.html { render :action => "new" }

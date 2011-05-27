@@ -45,8 +45,14 @@
           				<li><a href="about.html">公司信息</a></li>
           				<li><a href="privacy.html">服务内容</a></li>
           				<li><a href="gallery.html">联系我们</a></li>
-   						<!-- <li><a href="contacts.html"></a></li> 
-          				<li><a href="sitemap.html"></a></li> -->
+						<% if user_signed_in? %>
+							<% if (current_user.role?("admin") || current_user.role?("staff")) %>
+   							<li><a href="contacts.html">业务管理</a></li>
+							<% if current_user.role("admin")%> 
+          						<li><%= link_to "数据设置", management_url %></li>
+								<% end %>
+							<% end %>
+						<% end %>
         			</ul>
       			</div>
 		</div>

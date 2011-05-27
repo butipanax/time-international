@@ -28,10 +28,19 @@
 </table>
 
 <br/>
+<% if @order.pay_type == 'pay_taobao'%>
 <p>请您使用下面生成的淘宝链接拍下系统自动生成的宝贝，并在淘宝上使用支付宝支付，我们会在确认付款后给您邮寄您所订购的商品！</p>
 <br/>
 <ul>
 <li>淘宝宝贝订单号： <%= @order.taobao_invoice_number %></li>
 <li>淘宝宝贝链接地址： <a><%= @order.taobao_url%></a></li>
 </ul>
+<% else %>
+<p>请您使用下面支付宝账号进行支付，我们会在确认付款后给您邮寄您所订购的商品！</p>
+<br/>
+<ul>
+<li>本公司支付宝账号： <%=  %></li>
+<li>客服电话：</li>
+</ul>
+<% end %>
 </div>

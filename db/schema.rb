@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525215300) do
+ActiveRecord::Schema.define(:version => 20110527214504) do
 
   create_table "bonus_upgrade_details", :force => true do |t|
     t.string   "objective_name"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20110525215300) do
     t.datetime "updated_at"
     t.decimal  "shipping_price",        :precision => 10, :scale => 2
     t.decimal  "pay_price",             :precision => 10, :scale => 2
+    t.integer  "package_count"
   end
 
   create_table "products", :force => true do |t|
@@ -118,12 +119,13 @@ ActiveRecord::Schema.define(:version => 20110525215300) do
     t.string   "address"
     t.string   "postcode"
     t.string   "telephone"
-    t.integer  "discount_rank", :default => 1
+    t.integer  "discount_rank",   :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "sex"
-    t.integer  "bonus_score",   :default => 0
+    t.integer  "bonus_score",     :default => 0
+    t.string   "wangwang_number"
   end
 
   create_table "roles", :force => true do |t|

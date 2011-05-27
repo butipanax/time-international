@@ -1,40 +1,60 @@
+<fieldset>
+	<legend align=center>
+		您的收货地址
+	</legend>
 
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+	<%= form_for(@order) do |f| %>
+	<% if @order.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+		<ul>
+			<% @order.errors.full_messages.each do |msg| %>
+			<li>
+				<%= msg %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
 
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<div class="field">
+		<%= f.label '收货人姓名：' %>
+		<%= f.text_field :name, :size => 20 %>
+	</div>
+	<div class="field">
+		<%= f.label '收货人地址：' %>
+		<%= f.text_field :address, :size => 50 %>
+	</div>
+	<div class="field">
+		<%= f.label '邮政编码：' %>
+		<%= f.text_field :postcode, :size => 8 %>
+	</div>
+	<div class="field">
+		<%= f.label 'email地址：' %>
+		<%= f.text_field :email %>
+	</div>
+	<div class="field">
+		<%= f.label '联系电话：' %>
+		<%= f.text_field :telephone %>
+	</div>
+</fieldset>
+<br />
 
-  <div class="field">
-    <%= f.label '收货人姓名：' %><br />
-    <%= f.text_field :name, :size => 10 %>
-  </div>
-  <div class="field">
-    <%= f.label '收货人地址：' %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label '邮政编码：' %><br />
-    <%= f.text_field :postcode %>
-  </div>
-  <div class="field">
-    <%= f.label 'email地址：' %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label '联系电话：' %><br />
-    <%= f.text_field :telephone %>
-  </div>
+<fieldset>
+	<legend align=center>请您选择支付方式：</legend>
+	<div class="field">
+		<%= f.label '支付方式：' %>
+		<%= f.radio_button :pay_type, 'pay_taobao' %> <%= f.label :carbonated, "转到淘宝网支付" %>
+		<%= f.radio_button :pay_type, 'pay_pal' %> <%= f.label :carbonated, "通过支付宝支付" %>
+	</div>
+	<p>（转到淘宝网支付： 是一种让您更安心的支付方式，在您确认购买以后，我们将在淘宝网上自动生成一个宝贝，宝贝的金额和您在这里购买的金额相同，
+		您通过我们提供的淘宝网宝贝链接，在淘宝网上购买该宝贝并支付。本公司在淘宝网有专门的店铺，目前为<strong style="color:red">皇冠级</strong>卖家！ </p>
 
+</fieldset>
 
-  <div class="actions">
-    <%= f.submit '确认购买' %>
-  </div>
+<br />
+<div class="actions">
+	<%= f.submit '确认购买' %>
+</div>
+
 <% end %>
