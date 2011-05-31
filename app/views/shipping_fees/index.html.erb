@@ -3,16 +3,17 @@
 <br/>
 
 <table>
-  <tr>
+  <tr class="tfoot">
     <th>重量：</th>
     <th>价格：</th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @shipping_fees.each do |shipping_fee| %>
   <tr>
-    <td><%= shipping_fee.weight %></td>
-    <td><%= shipping_fee.price %></td>
-    <td><%= link_to '查看', shipping_fee %></td>
+    <td><%= shipping_fee.weight %>kg</td>
+    <td><%= number_to_currency(shipping_fee.price,:unit => '￥') %></td>
     <td><%= link_to '编辑', edit_shipping_fee_path(shipping_fee) %></td>
     <td><%= link_to '删除', shipping_fee, :confirm => '确定删除？', :method => :delete %></td>
   </tr>
@@ -22,4 +23,5 @@
 <br />
 
 <%= link_to '新增', new_shipping_fee_path %>
+<%= link_to '返回', management_path %>
 </div>

@@ -1,0 +1,10 @@
+<div class="simple_content">
+	<h2>付款日期：<%= @inputted_date %></h2>
+	<br />
+	<%= render 'shipping_list_table'%>
+
+	<br /><br />
+	<%= form_tag('/business/shipping_list', :method => :get) do %>
+	
+	<br /><%= submit_tag "保存为文件" %> 
+</div>

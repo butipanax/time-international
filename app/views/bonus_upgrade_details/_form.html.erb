@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :objective_name %><br />
+    <%= f.label '用途名称：' %><br />
     <%= f.text_field :objective_name %>
   </div>
   <div class="field">
-    <%= f.label :bonus_reward_score %><br />
+    <%= f.label '积分奖励额：' %><br />
     <%= f.text_field :bonus_reward_score %>
   </div>
   <div class="field">
-    <%= f.label :bonus_reward_price %><br />
+    <%= f.label '积分所需购买物品价格：' %><br />
     <%= f.text_field :bonus_reward_price %>
   </div>
   <div class="field">
-    <%= f.label :upgrade_count %><br />
+    <%= f.label '达到某等级所需购买次数：' %><br />
     <%= f.text_field :upgrade_count %>
   </div>
   <div class="field">
-    <%= f.label :upgrade_level %><br />
+    <%= f.label '客户等级：' %><br />
     <%= f.text_field :upgrade_level %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '保存' %>
   </div>
 <% end %>

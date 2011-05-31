@@ -1,0 +1,62 @@
+<%= form_for(@user) do |f| %>
+<% if @user.errors.any? %>
+<div id="error_explanation">
+	<h2>存在<%= @user.errors.count%> 个错误导致无法保存:</h2>
+	<ol>
+		<% @user.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ol>
+</div>
+<% end %>
+
+<div class="field">
+	<%= f.label '注册账号：' %>
+	<br />
+	<%= f.text_field :email%>
+</div>
+
+<%= f.fields_for :profile,@profile do |profile_form| %>
+
+<div class="field">
+	<%= profile_form.label '姓名：' %>
+	<br />
+	<%= profile_form.text_field :name, :size => 8 %>
+</div>
+<div class="field">
+	<%= profile_form.label '姓别：' %>
+	<%= profile_form.radio_button :sex, true %>
+	<%= profile_form.label '男' %>
+	<%= profile_form.radio_button :sex, false %>
+	<%= profile_form.label '女' %>
+</div>
+<div class="field">
+	<%= profile_form.label '地址：' %>
+	<br />
+	<%= profile_form.text_field :address, :size => 70  %>
+</div>
+<div class="field">
+	<%= profile_form.label '邮政编码：' %>
+	<br />
+	<%= profile_form.text_field :postcode, :size => 7%>
+</div>
+<div class="field">
+	<%= profile_form.label '联系电话：' %>
+	<br />
+	<%= profile_form.text_field :telephone, :size => 20  %>
+</div>
+<% end %>
+
+
+<div class="field">
+	<%= f.label '用户级别：' %>
+	<br />
+	<%= f.select :role_id, Role.all.map{|r|[r.name, r.id]}  %>
+</div>
+
+<div class="actions">
+	<%= f.submit '保存' %>
+</div>
+<% end %>

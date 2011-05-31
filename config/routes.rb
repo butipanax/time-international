@@ -1,4 +1,7 @@
 TimeInternationalECommerce::Application.routes.draw do
+  get "business/index"
+  get "business/query_shipping_list"
+  get "business/shipping_list"
   resources :bonus_upgrade_details
 
   resources :shipping_fees
@@ -19,12 +22,14 @@ TimeInternationalECommerce::Application.routes.draw do
 
   resources :roles
 
-  get "users/index"
-
+ 
   devise_for :users
 
+  resources :users
   get "main/index" => "main#index", :as=>'management'
 
+  get "users_search_list" => "users#new_users_search", :as=>'users_searching'
+  get "users_search_result_list" => "users#users_search" 
   match 'productslist/:category_id' => "Products#show_products_by_category"
   match 'order_search_form' => "Orders#order_search_form"
   match 'orderconfirmation/:id' => "Orders#order_confirmation"

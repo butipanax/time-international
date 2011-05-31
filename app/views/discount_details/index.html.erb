@@ -1,25 +1,23 @@
-<h3>设置折扣：</h3>
-<hr />
+<div class="simple_content">
+<h2>设置折扣：</h2>
+<br />
+<p><strong>折扣列表：</strong></p>
 
 <table>
-	<tr>
-		<th>折扣列表：</th>
-		<th></th>
-		<th></th>
-		<th></th>
-	</tr>
-	<tr>
+	<tr class="tfoot">
 		<td>会员等级</td>
 		<td>折扣</td>
+		<td></td>
 	</tr>
 	<% @discount_details.each do |discount_detail| %>
 
 	<tr>
 		<td><%= discount_detail.id %>星会员</td>
 		<td><%= discount_detail.discount_rate %></td>
-		<td><%= link_to 'Edit', edit_discount_detail_path(discount_detail) %></td>
+		<td><%= link_to '编辑', edit_discount_detail_path(discount_detail) %></td>
 	</tr>
 	<% end %>
 </table>
 <br />
-
+<%= link_to '返回', management_path %>
+</div>

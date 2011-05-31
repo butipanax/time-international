@@ -1,12 +1,13 @@
-<h1>Listing bonus_upgrade_details</h1>
-
+<div class="simple_content">
+<h2>会员升级及积分设置</h2>
+<br />
 <table>
-  <tr>
-    <th>Objective name</th>
-    <th>Bonus reward score</th>
-    <th>Bonus reward price</th>
-    <th>Upgrade count</th>
-    <th>Upgrade level</th>
+  <tr class="tfoot">
+    <th>用途名称</th>
+    <th>积分奖励额</th>
+    <th>积分所需购买物品价格</th>
+    <th>达到某等级所需购买次数</th>
+    <th>客户等级</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,16 +17,18 @@
   <tr>
     <td><%= bonus_upgrade_detail.objective_name %></td>
     <td><%= bonus_upgrade_detail.bonus_reward_score %></td>
-    <td><%= bonus_upgrade_detail.bonus_reward_price %></td>
+    <td><%= number_to_currency(bonus_upgrade_detail.bonus_reward_price,:unit=>'￥') %></td>
     <td><%= bonus_upgrade_detail.upgrade_count %></td>
     <td><%= bonus_upgrade_detail.upgrade_level %></td>
-    <td><%= link_to 'Show', bonus_upgrade_detail %></td>
-    <td><%= link_to 'Edit', edit_bonus_upgrade_detail_path(bonus_upgrade_detail) %></td>
-    <td><%= link_to 'Destroy', bonus_upgrade_detail, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to '查看', bonus_upgrade_detail %></td>
+    <td><%= link_to '编辑', edit_bonus_upgrade_detail_path(bonus_upgrade_detail) %></td>
+    <td><%= link_to '删除', bonus_upgrade_detail, :confirm => '确定删除？', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Bonus upgrade detail', new_bonus_upgrade_detail_path %>
+<%= link_to '新增', new_bonus_upgrade_detail_path %>
+<%= link_to '返回', management_path %>
+</div>

@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   belongs_to :role
   has_one :profile, :dependent => :destroy
+  accepts_nested_attributes_for :profile, :allow_destroy => true
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   

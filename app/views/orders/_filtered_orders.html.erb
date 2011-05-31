@@ -1,0 +1,117 @@
+<%= form_for(@order) do |f| %>
+<% if @order.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+	<ul>
+		<% @order.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<p>
+	<b>订单号：</b>
+	<%= @order.invoice_number %>
+</p>
+<fieldset>
+	<legend align=center>
+		修改订单状态：
+	</legend>
+	<div class="field">
+		<%= f.label '订单状态：' %>
+		<%= f.select :order_status_id, OrderStatus.all.map{|s| [s.name,s.id]} %>
+	</div>
+	<div class="field">
+		<%= f.label '订单取消理由：' %>
+		<%= f.text_field :cancel_reason %>
+	</div>
+</fieldset>
+<p>
+	<b>姓名：</b>
+	<%= @order.name %>
+</p>
+<p>
+	<b>账号：</b>
+	<%= @order.email %>
+</p>
+<p>
+	<b>旺旺号：</b>
+	<%= @order.wangwang_number %>
+</p>
+<p>
+	<b>商品总价格：</b>
+	<%= number_to_currency(@order.total_price,:unit => '￥')  %>
+</p>
+<p>
+	<b>商品折扣后价格：</b>
+	<%= number_to_currency(@order.discount_price,:unit => '￥')  %>
+</p>
+<p>
+	<b>包裹数量：</b>
+	<%= @order.package_count %>
+</p>
+<p>
+	<b>包裹价格：</b>
+	<%= number_to_currency(@order.shipping_price,:unit => '￥')  %>
+</p>
+<fieldset>
+	<legend align=center>
+		修改最终支付价格：
+	</legend>
+	<div class="field">
+		<%= f.label '支付价格：（￥）' %>
+		<%= f.text_field :pay_price, :size => 10 %>
+	</div>
+</fieldset>
+<p>
+	<b>支付方式：</b>
+	<% if @order.pay_type == "pay_pal" %>
+	<%= "通过支付宝支付" %>
+	<% else %>
+	<%= "通过淘宝支付" %>
+	<% end %>
+</p>
+<p>
+	<b>生成淘宝链接：</b>
+	<%= @order.taobao_url %>
+</p>
+<p>
+	<b>生成淘宝单号：</b>
+	<%= @order.taobao_invoice_number %>
+</p>
+<p>
+	<b>订单付款日期：</b>
+	<%= @order.payment_date %>
+</p>
+<p>
+	<b>订单发送日期：</b>
+	<%= @order.shipping_date %>
+</p>
+<p>
+	<b>订单结单日期：</b>
+	<%= @order.close_date %>
+</p>
+<fieldset>
+	<legend align=center>
+		修改邮寄地址：
+	</legend>
+	<div class="field">
+		<%= f.label '收货人地址：' %>
+		<%= f.text_field :address, :size => 50 %>
+	</div>
+	<div class="field">
+		<%= f.label '邮政编码：' %>
+		<%= f.text_field :postcode, :size => 8 %>
+	</div>
+	<div class="field">
+		<%= f.label '联系电话：' %>
+		<%= f.text_field :telephone %>
+	</div>
+</fieldset>
+<br />
+<div class="actions">
+	<%= f.submit '保存' %>
+</div>
+<% end %>

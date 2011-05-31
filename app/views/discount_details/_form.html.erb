@@ -11,8 +11,11 @@
 	</ul>
 </div>
 <% end %>
-<p>会员等级:<%= @discount_detail.id%>星会员</p>
+
+<p><strong>会员等级:<%= @discount_detail.id%>星会员</strong></p>
+<br />
 <div class="field">
+
 	<%= f.label "折扣:" %>
 	<%= f.text_field :discount_rate,:size => 10 %>
 </div>

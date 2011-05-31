@@ -11,8 +11,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.xml
   def index
-    @orders = Order.all
-
+    @orders = Order.where("order_status_id != 5 and order_status_id != 4")
+    @orders = @orders.paginate :page=>params[:page], :order => 'name desc', :per_page => 22
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @orders }
@@ -109,7 +109,7 @@ class OrdersController < ApplicationController
     end
 
     @order.invoice_number =  "TIG"<<tmp_number_string[1,tmp_number_string.length]
-    @order.order_status = OrderStatus.find_by_id(1)
+    @order.order_status_id = OrderStatus.find_by_id(1)
     title="婴儿营养品" << tmp_number_string[1,tmp_number_string.length]
    
     if @order.pay_type == 'pay_taobao'
@@ -144,9 +144,15 @@ class OrdersController < ApplicationController
   # PUT /orders/1.xml
   def update
     @order = Order.find(params[:id])
-
+    if params[:order][:order_status_id] == '2'
+      @order.payment_date = Time.now
+    elsif params[:order][:order_status_id]  == '3'
+      @order.shipping_date = Time.now
+    elsif params[:order][:order_status_id]  == '5'
+      @order.close_date = Time.now
+    end
     respond_to do |format|
-      if @order.update_attributes(params[:order])
+      if (@order.save && @order.update_attributes(params[:order]))
         format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
         format.xml  { head :ok }
       else

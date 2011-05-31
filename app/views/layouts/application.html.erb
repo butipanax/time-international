@@ -47,7 +47,7 @@
           				<li><a href="gallery.html">联系我们</a></li>
 						<% if user_signed_in? %>
 							<% if (current_user.role?("admin") || current_user.role?("staff")) %>
-   							<li><a href="contacts.html">业务管理</a></li>
+   							<li><%= link_to "业务管理", '/business/index' %></li>
 							<% if current_user.role("admin")%> 
           						<li><%= link_to "数据设置", management_url %></li>
 								<% end %>

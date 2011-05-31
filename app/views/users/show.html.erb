@@ -1,0 +1,79 @@
+<div class="simple_content">
+
+<p>
+  <b>注册账号：</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>用户级别：</b>
+  <%= @user.role.name %>
+</p>
+
+<% if @user.profile %>
+
+<p>
+  <b>姓名:</b>
+  <%= @user.profile.name %>
+</p>
+
+
+<p>
+  <b>性别:</b>
+ 	<%= @user.profile.sex ? '男':'女' %>
+</p>
+
+<p>
+  <b>地址:</b>
+  <%= @user.profile.address %>
+</p>
+
+<p>
+  <b>邮编:</b>
+  <%= @user.profile.postcode %>
+</p>
+
+<p>
+  <b>电话:</b>
+  <%= @user.profile.telephone %>
+</p>
+<p>
+  <b>旺旺号:</b>
+  <%= @user.profile.wangwang_number %>
+</p>
+<% else %>
+<p>
+  <b>姓名:</b>
+  n/a
+</p>
+
+
+<p>
+  <b>性别:</b>
+  n/a
+</p>
+
+<p>
+  <b>地址:</b>
+  n/a
+</p>
+
+<p>
+  <b>邮编:</b>
+  n/a
+</p>
+
+<p>
+  <b>电话:</b>
+  n/a
+</p>
+<p>
+  <b>旺旺号:</b>
+  n/a
+</p>
+
+<% end %>
+<br />
+<%= link_to '编辑', edit_user_path(@user) %> |
+<%= link_to '返回', users_path %>
+</div>

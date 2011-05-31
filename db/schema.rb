@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110527214504) do
+ActiveRecord::Schema.define(:version => 20110530235024) do
 
   create_table "bonus_upgrade_details", :force => true do |t|
     t.string   "objective_name"
@@ -87,16 +87,17 @@ ActiveRecord::Schema.define(:version => 20110527214504) do
     t.decimal  "total_price"
     t.decimal  "discount_price"
     t.string   "invoice_number"
-    t.integer  "order_status"
+    t.integer  "order_status_id"
     t.datetime "shipping_date"
     t.datetime "payment_date"
     t.datetime "close_date"
     t.text     "cancel_reason"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "shipping_price",        :precision => 10, :scale => 2
-    t.decimal  "pay_price",             :precision => 10, :scale => 2
+    t.decimal  "shipping_price"
+    t.decimal  "pay_price"
     t.integer  "package_count"
+    t.string   "wangwang_number"
   end
 
   create_table "products", :force => true do |t|

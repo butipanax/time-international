@@ -1,80 +1,126 @@
-<p id="notice"><%= notice %></p>
+<div class="simple_content">
 
+<h2>订单号： <%= @order.invoice_number %></h2>
+<br />
 <p>
-  <b>Name:</b>
+  <b>姓名：</b>
   <%= @order.name %>
 </p>
-
 <p>
-  <b>Address:</b>
-  <%= @order.address %>
-</p>
-
-<p>
-  <b>Email:</b>
+  <b>账号：</b>
   <%= @order.email %>
 </p>
 
 <p>
-  <b>Postcode:</b>
+  <b>旺旺号：</b>
+  <%= @order.wangwang_number %>
+</p>
+<p>
+  <b>地址：</b>
+  <%= @order.address %>
+</p>
+
+<p>
+  <b>邮编：</b>
   <%= @order.postcode %>
 </p>
 
 <p>
-  <b>Telephone:</b>
+  <b>电话：</b>
   <%= @order.telephone %>
 </p>
 
 <p>
-  <b>Pay type:</b>
-  <%= @order.pay_type %>
+  <b>订单状态：</b>
+  <%= @order.order_status.name %>
 </p>
 
 <p>
-  <b>Taobao url:</b>
+  <b>商品总价格：</b>
+  <%= number_to_currency(@order.total_price,:unit => '￥') %>
+</p>
+
+<p>
+  <b>商品折扣后价格：</b>
+  <%= number_to_currency(@order.discount_price,:unit => '￥') %>
+</p>
+<p>
+  <b>包裹数量：</b>
+  <%= @order.package_count %>
+</p>
+
+<p>
+  <b>包裹价格：</b>
+  <%= number_to_currency(@order.shipping_price,:unit => '￥') %>
+</p>
+
+<p>
+  <b>支付价格：</b>
+  <%= number_to_currency(@order.pay_price,:unit => '￥') %>
+</p>
+
+
+<p>
+  <b>支付方式：</b>
+  <% if @order.pay_type == "pay_pal" %>
+	<%= "通过支付宝支付" %>
+	<% else %>
+	<%= "通过淘宝支付" %>
+	<% end %>	
+</p>
+
+<p>
+  <b>生成淘宝链接：</b>
   <%= @order.taobao_url %>
 </p>
 
 <p>
-  <b>Taobao invoice number:</b>
+  <b>生成淘宝单号：</b>
   <%= @order.taobao_invoice_number %>
 </p>
 
 <p>
-  <b>Total price:</b>
-  <%= @order.total_price %>
+  <b>订单付款日期：</b>
+  <%= @order.payment_date %>
 </p>
 
 <p>
-  <b>Discount price:</b>
-  <%= @order.discount_price %>
-</p>
-
-<p>
-  <b>Invoice number:</b>
-  <%= @order.invoice_number %>
-</p>
-
-<p>
-  <b>Order status:</b>
-  <%= @order.order_status %>
-</p>
-
-<p>
-  <b>Shipping date:</b>
+  <b>订单发送日期：</b>
   <%= @order.shipping_date %>
 </p>
 
 <p>
-  <b>Close date:</b>
+  <b>订单结单日期：</b>
   <%= @order.close_date %>
 </p>
 
 <p>
-  <b>Cancel reason:</b>
+  <b>订单取消理由：</b>
   <%= @order.cancel_reason %>
 </p>
+<br /><br /><br />
+<h2>购买商品列表</h2>
+<br />
+<table>
+	<tr class="tfoot">
+		<th>商品名称</th>
+		<th>购买数量</th>
+		<th>商品重量</th>
+		<th>商品折扣前价格</th>
+	</tr>
 
+<% @order.line_items.each do |line_item| %>
+	<tr>
+		<td><%= line_item.product.title %></td>
+		<td><%= line_item.quantity %></td>
+		<td><%= line_item.product.weight * line_item.quantity %></td>
+		<td><%= number_to_currency(line_item.price,:unit => '￥') %></td>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+	</tr>
+<% end %>
+</table>
+<br />
+<%= link_to '编辑', edit_order_path(@order) %> |
+<%= link_to '返回', orders_path %>
+    
+</div>

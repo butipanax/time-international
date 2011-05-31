@@ -3,16 +3,26 @@
 <h2>基础数据设置</h2>
 <br />
 <ul>
-	<p><li><%= link_to '会员等级折扣设置'%></li></p>
-	<p><li><%= link_to '会员升级及积分设置'%></li></p>
-	<p><li><%= link_to '运输费用设置' %></li></p>
-<ul>
+	<p><li><%= link_to '会员等级折扣设置', discount_details_path %></li></p>
+	<p><li><%= link_to '会员升级及积分设置', bonus_upgrade_details_path %></li></p>
+	<p><li><%= link_to '运输费用设置',shipping_fees_path %></li></p>
+</ul>
 
 <br /><br />
 <h2>用户管理</h2>
 <br />
 <ul>
-	<p><li><%= link_to '会员列表'%></li></p>
-	<p><li><%= link_to '会员搜索'%></li></p>
+	<p><li><%= link_to '会员列表', users_path %></li></p>
+	<p><li><%= link_to '会员搜索', users_searching_url %></li></p>
+</ul>
+
+<br /><br />
+<h2>数据统计</h2>
+<br />
 <ul>
+	<p><li><%= link_to '商品销售额统计'  %></li></p>
+	<p><li><%= link_to '营业额统计'  %></li></p>
+	<p><li><%= link_to '收支统计'  %></li></p>
+</ul>
+
 </div>

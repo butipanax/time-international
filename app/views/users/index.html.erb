@@ -1,2 +1,57 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="simple_content">
+<h2>用户档案列表：</h2>
+<br />
+
+<table>
+  	<tr class="tfoot">
+		<th colspan=6>注册账号</th>
+		<th colspan=3>用户级别</th>
+		<th colspan=2></th>		
+		<th colspan=2></th>	
+		<th colspan=2></th>	
+  	</tr>
+	<tr class="tfoot">
+		<th colspan=2>姓名</th>
+    	<th>性别</th>
+    	<th colspan=4>地址</th>
+    	<th colspan=2>邮编</th>
+    	<th colspan=2>电话</th>
+		<th colspan=2>旺旺号</th>
+		<th colspan=2>用户折扣级别</th>
+	</tr>
+
+<% @users.each do |user| %>
+  	<tr>
+    	<td colspan=6><strong><%= user.email %></strong></td>
+		<td colspan=3><%= user.role.name %></td>
+		<td colspan=2><%= link_to '查看', user_path(user) %></td>
+		<td colspan=2><%= link_to '编辑', edit_user_path(user)%></td>
+		<td colspan=2><%= link_to '删除', user_path(user), :confirm=>"确认删除？",:method=>:delete %></td>
+  	</tr>
+	<tr>
+		<% if user.profile %>
+    		<td colspan=2><%= user.profile.name %></td>
+    		<td colspan=1><%= user.profile.sex ? '男':'女' %> </td>
+	    	<td colspan=4><%= user.profile.address %></td>
+	    	<td colspan=2><%= user.profile.postcode %></td>
+	    	<td colspan=2><%= user.profile.telephone %></td>
+	    	<td colspan=2><%= user.profile.wangwang_number %></td>	
+	    	<td colspan=2><%= user.profile.discount_rank %>星会员</td>
+		<% else %>
+    		<td colspan=2>n/a</td>
+    		<td colspan=1>n/a </td>
+	    	<td colspan=4>n/a</td>
+	    	<td colspan=2>n/a</td>
+	    	<td colspan=2>n/a</td>
+	    	<td colspan=2>n/a</td>	
+	    	<td colspan=2>n/a</td>
+		<% end %>
+	</tr>
+<% end %>
+</table>
+<p><%= will_paginate_with_i18n @users %></p>
+<br />
+
+<%= link_to '返回会员列表', management_path %> <br />
+<%= link_to '返回会员搜索', users_searching_url %>
+</div>
