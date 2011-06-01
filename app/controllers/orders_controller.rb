@@ -130,9 +130,10 @@ class OrdersController < ApplicationController
         @cart.line_items.each do |line_item|
           line_item.update_attribute(:order_id, @order.id)
         end
+        Notifier.order_created(@order).deliver
         @cart = nil
         session[:cart_id] = nil
-        format.html { render 'orders/order_confirmation', :notice => '订单成功生成，购物车重新置空！' }
+        format.html { render 'orders/order_confirmation', :notice => '订单成功生成，您将收到一封我们的确认信件！ ' }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
         format.html { render :action => "new" }
@@ -166,6 +167,9 @@ class OrdersController < ApplicationController
     end
     respond_to do |format|
       if (@order.save && @order.update_attributes(params[:order]) && profile.save)
+        if @order.order_status_id == 3
+          Notifier.order_shipped(@order).deliver
+        end
         format.html { redirect_to(@order, :notice => '更新成功！') }
         format.xml  { head :ok }
       else

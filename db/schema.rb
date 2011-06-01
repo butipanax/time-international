@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601112557) do
+ActiveRecord::Schema.define(:version => 20110601192819) do
 
   create_table "bonus_upgrade_details", :force => true do |t|
     t.string   "objective_name"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20110601112557) do
     t.string   "wangwang_number"
     t.string   "province"
     t.text     "memo"
+    t.string   "shipping_number"
   end
 
   create_table "products", :force => true do |t|
