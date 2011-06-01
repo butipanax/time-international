@@ -1,0 +1,16 @@
+<div class="simple_content">
+<h2>收支统计结果</h2>
+
+<br />
+	<ul>
+		<li>结案日期从：<%= @s_b_date ? @s_b_date : "-" %> 到： <%= @s_e_date ? @s_e_date : "-" %> </li>
+	</ul>
+	<br />
+		<ul>
+			<li><b>商品总成本：</b><%= number_to_currency(@statistic_result["total_cost"], :unit => "￥") %></li>
+			<li><b>包裹总费用：</b><%= number_to_currency(@statistic_result["total_shipping_price"], :unit => "￥") %></li>
+			<li><b>总营业额：</b><%= number_to_currency(@statistic_result["turnover"], :unit => "￥") %></li>
+		</ul>
+<br />
+	<p><li><%= link_to '返回','/main/statistic_balance_form'  %></li></p>
+</div>

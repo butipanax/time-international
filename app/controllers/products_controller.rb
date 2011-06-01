@@ -29,10 +29,10 @@ class ProductsController < ApplicationController
     session[:current_category_id] = category_id
     @products_list = []
     if Category.find_by_id(category_id).parent_id
-      @products_list = Product.find_all_by_category_id(category_id)
+      @products_list = Product.mount.find_all_by_category_id(category_id)
     else
       for category in Category.find_all_by_parent_id(category_id)
-        tmp = Product.find_all_by_category_id(category.id)
+        tmp = Product.mount.find_all_by_category_id(category.id)
         unless tmp.size == 0
           @products_list.concat(tmp)
         end

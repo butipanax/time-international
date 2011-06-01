@@ -1,0 +1,27 @@
+<div class="simple_content">
+<h2>商品销售额统计结果</h2>
+<br />
+	<ul>
+		<li>结案日期从：<%= @s_b_date ? @s_b_date : "-" %> 到： <%= @s_e_date ? @s_e_date : "-" %> </li>
+	</ul>
+	<br />
+	<table>
+		<tr class="tfoot">
+			<th colspan=9>商品名称</th>
+			<th colspan=2>商品销售总数量</th>
+			<th colspan=4>商品销售总价值</th>
+		</tr>
+
+		<% @statistic_result.each do |r| %>
+			<tr>
+				<td colspan=9><%= if p = Product.find_by_id(r["product_id"]) then p.title end %></td>
+				<td colspan=2><%= r["count"]%></td>
+				<td colspan=4><%= number_to_currency(r["total_price"], :unit=>"￥") %></td>
+			
+			</tr>
+		<% end %>
+	</table>
+
+<br />
+	<p><li><%= link_to '返回','/main/statistic_goods_sales_form'  %></li></p>
+</div>

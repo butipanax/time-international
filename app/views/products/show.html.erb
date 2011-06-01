@@ -35,8 +35,9 @@
        
 <div class="cl"></div><br />
 	<% if user_signed_in? %>
+		<%= link_to '购买', line_items_path(:product_id => @product), :method => :post, :remote=>true %> |
 		<% if (current_user.role?("admin") || current_user.role?("staff")) %>
-			<%= link_to '编辑', edit_product_path(@product) %> |
+			<%= link_to '编辑', edit_product_path(@product) %> 
 		<% end %>
 	<% end %>
 </div>

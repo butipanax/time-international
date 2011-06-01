@@ -12,6 +12,7 @@
       </ol>
     </div>
   <% end %>
+<p style="color: red">目前您的积分：<%= profile.bonus_score%></p><br />
 
   <div class="field">
     <%= f.label '姓名：' %><br />
@@ -27,6 +28,11 @@
   </div>
   
   <div class="field">
+    <%= f.label '所在省市（xx省xx市）：' %><br />
+    <%= f.text_field :province, :size => 20  %>
+  </div>
+
+  <div class="field">
     <%= f.label '地址：' %><br />
     <%= f.text_field :address, :size => 70  %>
   </div>
@@ -41,6 +47,11 @@
     <%= f.text_field :telephone, :size => 20  %>
   </div>
   
+  <div class="field">
+    <%= f.label '旺旺号：' %><br />
+    <%= f.text_field :wangwang_number, :size => 20  %>
+  </div>
+
   <div class="actions">
     <%= f.submit '保 存' %>
   </div>

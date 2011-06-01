@@ -33,6 +33,11 @@
 	<%= profile_form.label '女' %>
 </div>
 <div class="field">
+	<%= profile_form.label '所在省市：' %>
+	<br />
+	<%= profile_form.text_field :province, :size => 70  %>
+</div>
+<div class="field">
 	<%= profile_form.label '地址：' %>
 	<br />
 	<%= profile_form.text_field :address, :size => 70  %>
@@ -46,6 +51,17 @@
 	<%= profile_form.label '联系电话：' %>
 	<br />
 	<%= profile_form.text_field :telephone, :size => 20  %>
+</div>
+<div class="field">
+	<%= profile_form.label '会员等级：' %>
+	<br />
+	<%= profile_form.select :discount_rank, DiscountDetail.all.map{|d|["#{d.id}星会员",d.id]}  %>
+</div>
+
+<div class="field">
+	<%= profile_form.label '会员积分：' %>
+	<br />
+	<%= profile_form.text_field :bonus_score, :size => 20  %>
 </div>
 <% end %>
 

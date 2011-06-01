@@ -2,6 +2,10 @@ TimeInternationalECommerce::Application.routes.draw do
   get "business/index"
   get "business/query_shipping_list"
   get "business/shipping_list"
+  get "business/export_to_csv"
+  get "business/order_search_form"
+  get "business/orders_search_result_list" => "business#get_orders_searching_result"
+
   resources :bonus_upgrade_details
 
   resources :shipping_fees
@@ -27,6 +31,12 @@ TimeInternationalECommerce::Application.routes.draw do
 
   resources :users
   get "main/index" => "main#index", :as=>'management'
+  get "main/statistic_turnover_form"
+  get "main/statistic_turnover_search"
+  get "main/statistic_goods_sales_form"
+  get "main/statistic_goods_sales_search"
+  get "main/statistic_balance_form"
+  get "main/statistic_balance_search"
 
   get "users_search_list" => "users#new_users_search", :as=>'users_searching'
   get "users_search_result_list" => "users#users_search" 

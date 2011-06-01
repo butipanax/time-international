@@ -4,7 +4,11 @@
 	<%= render 'shipping_list_table'%>
 
 	<br /><br />
-	<%= form_tag('/business/shipping_list', :method => :get) do %>
+
+
+	<%= form_tag('/business/export_to_csv', :method => :get) do %>
 	
 	<br /><%= submit_tag "保存为文件" %> 
+
+	<% end %>
 </div>

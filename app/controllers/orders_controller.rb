@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
       return
     end
 
-    @order = Order.new
+    @order = Order.new(:pay_type => 'pay_pal')
     @order.email = current_user.email
   
 
@@ -54,6 +54,7 @@ class OrdersController < ApplicationController
     if profile
       @discount_rate = profile.discount_detail.discount_rate
       @order.name = profile.name    
+      @order.province = profile.province
       @order.address = profile.address
       @order.postcode = profile.postcode
       @order.telephone = profile.telephone
@@ -76,15 +77,14 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     @cart = current_cart
     if @cart.line_items.empty?
-      redirect_to products_url, :notice => "您的购物车已经被清空！" and return
+      redirect_to products_url, :notice => "注意，上一次操作后，您的购物车已经被清空！" and return
     end
     
     profile = current_user.profile
     @discount_rate = 1
     
-    profile = current_user.profile
-    @discount_rate = profile.discount_detail.discount_rate if profile
-        
+    profile = current_user.profile || current_user.create_profile
+    @discount_rate = profile.discount_detail.discount_rate
     
     @order.user_id = current_user.id
     @order.total_price = @cart.total_price
@@ -126,6 +126,7 @@ class OrdersController < ApplicationController
     
     respond_to do |format|
       if @order.save 
+        profile.save
         @cart.line_items.each do |line_item|
           line_item.update_attribute(:order_id, @order.id)
         end
@@ -144,16 +145,28 @@ class OrdersController < ApplicationController
   # PUT /orders/1.xml
   def update
     @order = Order.find(params[:id])
+    profile = Profile.find_by_user_id(@order.user_id)
+    
     if params[:order][:order_status_id] == '2'
       @order.payment_date = Time.now
     elsif params[:order][:order_status_id]  == '3'
       @order.shipping_date = Time.now
     elsif params[:order][:order_status_id]  == '5'
       @order.close_date = Time.now
+      profile.buy_count = profile.buy_count + 1
+      upgrade_class = BonusUpgradeDetail.find_by_upgrade_level(profile.discount_rank + 1)
+      upgrade_count = upgrade_class ? upgrade_class.upgrade_count : 99999
+      if profile.buy_count == upgrade_count
+        profile.discount_rank = profile.discount_rank + 1
+      end 
+      bonus_class= BonusUpgradeDetail.find_by_objective_name("bonus")
+      if bonus_class.bonus_reward_price != 0
+        profile.bonus_score =  profile.bonus_score + (@order.pay_price / bonus_class.bonus_reward_price).to_i * bonus_class.bonus_reward_score
+      end
     end
     respond_to do |format|
-      if (@order.save && @order.update_attributes(params[:order]))
-        format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
+      if (@order.save && @order.update_attributes(params[:order]) && profile.save)
+        format.html { redirect_to(@order, :notice => '更新成功！') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -174,9 +187,6 @@ class OrdersController < ApplicationController
     end
   end
   
-  def order_search_form
-    render 'orders/order_search_form'
-  end
   
  def getArgumentPara(title,price)
  

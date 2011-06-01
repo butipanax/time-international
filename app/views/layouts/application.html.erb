@@ -23,7 +23,7 @@
               			</li>
             		<% else %>
               			<li> 
-						欢迎您！<%= current_user.email %> |
+						<b style="color:red"><%=current_user.profile ? current_user.profile.discount_rank : 1  %>星会员: </b><%= current_user.email %> |
                 		<%= link_to '退出', destroy_user_session_path,{:style=>'color:#f8379b'} %>
                 		|
                 		<%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#f8379b'} %>

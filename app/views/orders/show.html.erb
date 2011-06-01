@@ -30,11 +30,14 @@
   <%= @order.telephone %>
 </p>
 
-<p>
+<p style="color:red">
   <b>订单状态：</b>
   <%= @order.order_status.name %>
 </p>
-
+<p>
+  <b>订单备注：</b>
+  <%= @order.memo %>
+</p>
 <p>
   <b>商品总价格：</b>
   <%= number_to_currency(@order.total_price,:unit => '￥') %>
@@ -120,7 +123,10 @@
 <% end %>
 </table>
 <br />
+<% if @order.order_status_id != 5 %>
 <%= link_to '编辑', edit_order_path(@order) %> |
-<%= link_to '返回', orders_path %>
+<% end %>
+<%= link_to '返回到待处理订单列表', orders_path %> |
+<%= link_to '返回到订单搜索','/business/order_search_form' %>
     
 </div>

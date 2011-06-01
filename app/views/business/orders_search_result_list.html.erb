@@ -1,5 +1,5 @@
 <div class="simple_content">
-<h2>待处理订单列表</h2>
+<h2>订单搜索列表<%= @TEST %></h2>
 <br />
 
 <table>
@@ -23,8 +23,9 @@
     <td colspan = 2><%= order.order_status.name %></td>
  
     <td><%= link_to '查看', order %></td>
+	<% if !(order.order_status_id == 4 ||order.order_status_id == 5)  %>
     <td><%= link_to '编辑', edit_order_path(order) %></td>
-
+	<% end %>
   </tr>
 <% end %>
 <% end %>
@@ -32,5 +33,5 @@
 <p><%= will_paginate_with_i18n @orders %></p>
 <br />
 
-<%= link_to "返回", '/business/index' %>
+<%= link_to "返回", '/business/order_search_form' %>
 </div>

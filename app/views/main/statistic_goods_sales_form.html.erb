@@ -1,0 +1,15 @@
+<div class="simple_content">
+<h2>商品销售额统计</h2>
+<br />
+
+<%= form_tag('/main/statistic_goods_sales_search', :method => :get) do %>
+
+<p><%= check_box_tag 'accept_date'%><b>按时间范围：
+从：<%= search_field_tag('beginning_date', "#{Date.today.to_s}",:size => 8) %>&nbsp;到：<%= search_field_tag 'ending_date', "#{Date.today.to_s}",:size => 8%></p>
+
+
+
+<br /><%= submit_tag "查找", :name => :users_search %> 
+
+<% end %>
+</div>

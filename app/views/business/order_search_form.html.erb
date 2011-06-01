@@ -1,0 +1,21 @@
+<div class="simple_content">
+
+<h2>订单搜索</h2>
+<br />
+<%= form_tag('/business/orders_search_result_list', :method => :get) do %>
+
+
+<p><%= radio_button_tag('name', 'name') %>按姓名查找 <br /> <%= search_field_tag 'name_search_field'%></p>
+
+<p><%= radio_button_tag('name', 'wangwang') %>按旺旺号查找<br /> <%= search_field_tag 'wangwang_search_field'%></p>
+
+<p><%= radio_button_tag('name', 'email') %>按账号查找(email) <br /> <%= search_field_tag 'email_search_field'%></p>
+
+<p><%= radio_button_tag('name', 'date')%><b>按结案时间范围：
+从：<%= search_field_tag('beginning_date', "#{Date.today.to_s}",:size => 8) %>&nbsp;到：<%= search_field_tag 'ending_date', "#{Date.today.to_s}",:size => 8%></p>
+
+<br /><%= submit_tag "查找" %> 
+
+<% end %>
+
+</div>
