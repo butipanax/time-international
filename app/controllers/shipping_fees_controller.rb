@@ -1,4 +1,6 @@
 class ShippingFeesController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin_activity
   # GET /shipping_fees
   # GET /shipping_fees.xml
   def index

@@ -15,7 +15,7 @@ body{
 	background: #f6f6ee url(/images/bkg.jpeg);
     font-family:Arial, sans-serif;
     color:#4e4e4e;
-    font-size:11px;
+    font-size:12px;
     line-height:14px;
     padding-bottom:70px;
 }
@@ -27,13 +27,15 @@ a{
     text-decoration: underline;
     text-transform: uppercase;
 }
+a:visited {
+	color: #666;
+}
 a:hover{
     text-decoration:none;
     color:#ff0088;
+	background-color: #f8e1ed;
 }
-a img{
-    border:0;
-}
+
 p{
 	padding: 3px 2px 3px 2px;
 }
@@ -56,7 +58,8 @@ label {
 	font-weight: bold;
 	color: #4e4e4e;
 }
-li{list-style-type: none;}
+
+
 h2{font-size: 20px; color:#2a2a2a; font-weight: normal; text-transform: uppercase; font-family: georgia, sans-serif; padding-bottom:8px; border-bottom:solid 2px #dedede; margin-right:5px}
 h3{color:#0f89df; font-size: 15px; font-family: "trebuchet ms", sans-serif; text-transform: uppercase; line-height: 18px;}
 ul{list-style-type: none;}
@@ -223,7 +226,7 @@ font-weight:bold;
 	table-layout:fixed;
 }
 
-#main .simple_content table td {text-align: center;border: 1px dotted #bbb;padding: .5em; overflow:hidden;} 
+#main .simple_content table td {text-align: center;border: 1px dotted #bbb;padding: .5em; overflow:hidden;font-size:12px;} 
 #main .simple_content table th {border: 1px dotted #bbb;padding: .5em;font-size:1.2em;}
 #main .simple_content table .tfoot{
 	background-color: #f8f8f8;

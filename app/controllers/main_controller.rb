@@ -1,4 +1,6 @@
 class MainController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin_activity
   def index
   end
   def statistic_turnover_form

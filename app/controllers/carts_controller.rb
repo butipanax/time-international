@@ -1,5 +1,6 @@
 #encoding: utf-8
 class CartsController < ApplicationController
+
   # GET /carts
   # GET /carts.xml
   def index
@@ -79,7 +80,7 @@ class CartsController < ApplicationController
   def destroy
     @cart = current_cart
     @cart.destroy
-    @products = Product.all
+    #@products = Product.all
     session[:cart_id] = nil
     respond_to do |format|
       format.html { redirect_to(products_url, :notice => "您的购物车已经被清空！") }

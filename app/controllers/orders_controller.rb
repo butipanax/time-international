@@ -8,6 +8,7 @@ require 'rexml/document'
 
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :authenticate_staff_activity, :except => [:new,:create]
   # GET /orders
   # GET /orders.xml
   def index
@@ -258,5 +259,5 @@ class OrdersController < ApplicationController
     parsedURL = URI.parse(url)
   end
 
-
+  private :getArgumentPara,:getArgumentPara2,:createRequestParam,:getRequestUrl,:getRequestUrl2,:sign
 end

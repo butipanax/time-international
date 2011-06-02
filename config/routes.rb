@@ -41,6 +41,7 @@ TimeInternationalECommerce::Application.routes.draw do
   get "users_search_list" => "users#new_users_search", :as=>'users_searching'
   get "users_search_result_list" => "users#users_search" 
   match 'productslist/:category_id' => "Products#show_products_by_category"
+  get "products_search_list" => "Products#search_products_by_name"
   match 'order_search_form' => "Orders#order_search_form"
   match 'orderconfirmation/:id' => "Orders#order_confirmation"
  

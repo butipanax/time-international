@@ -2,6 +2,7 @@
 
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :authenticate_admin_activity, :only => [:index,:destory]
 
   # GET /profiles
   # GET /profiles.xml

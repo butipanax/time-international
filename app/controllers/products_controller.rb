@@ -1,5 +1,8 @@
+#encoding: utf-8
+
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index,:show,:show_products_by_category]
+  before_filter :authenticate_user!, :except => [:index,:show,:show_products_by_category,:search_products_by_name]
+  before_filter :authenticate_staff_activity, :only => [:new,:edit,:create,:update,:destory]
 
   # GET /products
   # GET /products.xml
@@ -22,7 +25,18 @@ class ProductsController < ApplicationController
       format.xml  { render :xml => @product }
     end
   end
-
+  
+  def search_products_by_name
+    product_name = params[:name_search_field]
+    @products_list = Product.where("title  like ?","%#{product_name}%")
+    if @products_list.empty?
+      flash[:notice] = "很遗憾，没有指定名称的商品！"
+    else
+      @products_list = @products_list.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 7
+    end
+    render 'products/products_list'
+  end
+  
   def show_products_by_category
     category_id = params[:category_id]
     @cart = current_cart 
@@ -38,7 +52,9 @@ class ProductsController < ApplicationController
         end
       end
     end
-    unless @products_list.empty?
+    if @products_list.empty?
+      flash[:notice] = "很遗憾，指定目录没有商品！"
+    else
       @products_list = @products_list.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 7
     end
     render 'products/products_list'
@@ -67,7 +83,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
+        format.html { redirect_to(@product, :notice => '商品成功创建！') }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
         format.html { render :action => "new" }
@@ -83,7 +99,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }
+        format.html { redirect_to(@product, :notice => '商品成功保存！') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

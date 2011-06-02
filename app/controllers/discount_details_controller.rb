@@ -1,6 +1,7 @@
 #encoding: utf-8
 class DiscountDetailsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :authenticate_admin_activity
   # GET /discount_details
   # GET /discount_details.xml
   def index

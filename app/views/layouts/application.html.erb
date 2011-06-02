@@ -31,9 +31,9 @@
             		<% end %>  
 				</strong></span>
                
-                <form action="" class="search" method="get">
+                <form action="/products_search_list" class="search" method="get">
 					<div class="fld">
-						<input type="text" class="field blink" title="search" value="search" />
+						<input id="name_search_field" name="name_search_field" type="text" class="field blink"  value="search" />
 					</div>
 					<div class="btnp"><input type="submit" value="Go" /></div>
 				</form>
@@ -41,7 +41,7 @@
 		<div id="header2"> 			
       			<div id="nav">
         			<ul>
-        				<li><a href="index.html" class="current">网站首页</a></li>
+        				<li><%= link_to "网站首页", root_path, :class=>"current" %></li>
           				<li><a href="about.html">公司信息</a></li>
           				<li><a href="privacy.html">服务内容</a></li>
           				<li><a href="gallery.html">联系我们</a></li>

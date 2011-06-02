@@ -3,6 +3,8 @@
 require 'csv'
 
 class BusinessController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin_activity
   def index
   end
 
@@ -40,10 +42,10 @@ class BusinessController < ApplicationController
   
   def get_orders_searching_result
     if params[:name] == 'name'
-      @orders = Order.where("name like ?", "#{params[:name_search_field]}%")
+      @orders = Order.where("name like ?", "%#{params[:name_search_field]}%")
     end
     if params[:name] == 'wangwang'
-      @orders = Order.where("wangwang_number like ?", "#{params[:wangwang_search_field]}")  
+      @orders = Order.where("wangwang_number like ?", "%#{params[:wangwang_search_field]}")  
     end
     if params[:name] == 'email'      
       aUser = User.find_by_email(params[:email_search_field])

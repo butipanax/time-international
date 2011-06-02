@@ -1,5 +1,6 @@
 class LineItemsController < ApplicationController
   before_filter :authenticate_user!, :except => [:create]
+  before_filter :authenticate_staff_activity, :except => [:create]
   # GET /line_items
   # GET /line_items.xml
   def index

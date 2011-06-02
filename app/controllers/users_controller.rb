@@ -2,6 +2,7 @@
 class UsersController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :authenticate_admin_activity
    
   def index
     @users = User.all
@@ -30,6 +31,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to(@rZZole, :notice => 'Role was successfully created.') }

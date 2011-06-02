@@ -52,26 +52,32 @@
 	<br />
 	<%= profile_form.text_field :telephone, :size => 20  %>
 </div>
+
+<% if user_signed_in? %>
+<% if current_user.role?("admin") %>
 <div class="field">
 	<%= profile_form.label '会员等级：' %>
 	<br />
 	<%= profile_form.select :discount_rank, DiscountDetail.all.map{|d|["#{d.id}星会员",d.id]}  %>
 </div>
-
 <div class="field">
 	<%= profile_form.label '会员积分：' %>
 	<br />
 	<%= profile_form.text_field :bonus_score, :size => 20  %>
 </div>
 <% end %>
+<% end %>
+<% end %>
 
-
+<% if user_signed_in? %>
+<% if current_user.role?("admin") %>
 <div class="field">
 	<%= f.label '用户级别：' %>
 	<br />
 	<%= f.select :role_id, Role.all.map{|r|[r.name, r.id]}  %>
 </div>
-
+<% end %>
+<% end %>
 <div class="actions">
 	<%= f.submit '保存' %>
 </div>

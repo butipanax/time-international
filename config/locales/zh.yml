@@ -1,3 +1,30 @@
 zh:
   previous: '前一页'
   next: '下一页'
+  activerecord:
+    errors:
+      models:
+        order:
+          attributes:
+            name: 
+              blank:  '（收货人姓名不能为空！）'
+            address:
+              blank:  '收货人地址不能为空！）'
+            postcode:
+              blank:   '（邮政编码不能为空！）'
+            telephone:
+              blank:  '（联系电话不能为空！）'
+            province:
+              blank:   '（收货人所在省市不能为空！）'
+        
+        user:
+          attributes:
+            email:
+              taken: '（此email账号已被他人使用！）'
+            current_password:  
+              invalid: '（当前用户名密码错误！）'
+              blank:  '（请输入密码！）'
+            password:  
+              confirmation: '（两次输入的密码不一致！）'
+              too_short: '（注意，密码长度至少需要6位！）'
+              blank:  '（请输入密码！）'
