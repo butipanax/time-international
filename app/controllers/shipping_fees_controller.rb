@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ShippingFeesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authenticate_admin_activity
@@ -46,7 +47,7 @@ class ShippingFeesController < ApplicationController
 
     respond_to do |format|
       if @shipping_fee.save
-        format.html { redirect_to(@shipping_fee, :notice => 'Shipping fee was successfully created.') }
+        format.html { redirect_to(@shipping_fee, :notice => '创建成功！') }
         format.xml  { render :xml => @shipping_fee, :status => :created, :location => @shipping_fee }
       else
         format.html { render :action => "new" }
@@ -62,7 +63,7 @@ class ShippingFeesController < ApplicationController
 
     respond_to do |format|
       if @shipping_fee.update_attributes(params[:shipping_fee])
-        format.html { redirect_to(@shipping_fee, :notice => 'Shipping fee was successfully updated.') }
+        format.html { redirect_to(@shipping_fee, :notice => '更新成功！') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -27,6 +27,8 @@
                 		<%= link_to '退出', destroy_user_session_path,{:style=>'color:#f8379b'} %>
                 		|
                 		<%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#f8379b'} %>
+						|
+                		<%= link_to '订单记录', '/personal_orders_list',{:style=>'color:#f8379b'} %>
               			</li>
             		<% end %>  
 				</strong></span>
@@ -38,8 +40,11 @@
 					<div class="btnp"><input type="submit" value="Go" /></div>
 				</form>
 			</div>
-		<div id="header2"> 			
-      			<div id="nav">
+		<div id="header2"> 	
+				<div id="nav_l">
+					<img src="/images/logo.gif">
+      			</div>
+				<div id="nav">
         			<ul>
         				<li><%= link_to "网站首页", root_path, :class=>"current" %></li>
           				<li><a href="about.html">公司信息</a></li>

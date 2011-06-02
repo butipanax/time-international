@@ -8,7 +8,12 @@ require 'rexml/document'
 
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authenticate_staff_activity, :except => [:new,:create]
+  before_filter :authenticate_staff_activity, :except => [:new,:create,:personal_orders]
+  
+  def personal_orders
+    @orders = Order.where('user_id = ?',"#{current_user.id}")
+    @orders = @orders.paginate :page=>params[:page], :order => 'name desc', :per_page => 22  
+  end
   # GET /orders
   # GET /orders.xml
   def index

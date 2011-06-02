@@ -7,37 +7,44 @@
 </p>
        
 <div class="clr"></div><br />
-
+<div class="emph">
 <p>
-  <b>商品名称:</b>
+  <b>商品名称:&nbsp;</b>
   <%= @product.title %>
 </p>
-
+</div>
+<hr/>
 <p>
-  <b> 商品目录:</b>
+<% if user_signed_in? %>
+			<% if (current_user.role?("admin") || current_user.role?("staff")) %>
+<b> 商品目录:&nbsp;</b>
   <%= Category.find_by_id(@product. category_id).name %>
 </p>
 <p>
-  <b> 商品简介:</b>
+  <b> 商品简介:&nbsp;</b>
   <%= @product. intro %>
 </p>
+<% end %>
+		<% end %>
 <p>
-  <b>商品介绍:</b><br />
+  <div class="emph"><b>商品介绍:&nbsp;</b></div><br />
   <%= @product.description.html_safe %>
 </p>
-
+<hr/>
+<div class="emph">
 <p>
-  <b>价格:</b>
-  <%= @product.price %>
+  <b>价格:&nbsp;</b>
+  <%= number_to_currency(@product.price,:unit=>"￥")%>
 </p>
-
-
+</div>
+<hr/>
        
 <div class="cl"></div><br />
+
+		<%= link_to '购买', line_items_path(:product_id => @product), :method => :post, :remote=>true %>
 	<% if user_signed_in? %>
-		<%= link_to '购买', line_items_path(:product_id => @product), :method => :post, :remote=>true %> |
 		<% if (current_user.role?("admin") || current_user.role?("staff")) %>
-			<%= link_to '编辑', edit_product_path(@product) %> 
+			 |<%= link_to '编辑', edit_product_path(@product) %> 
 		<% end %>
 	<% end %>
 </div>

@@ -1,3 +1,4 @@
+#encoding: utf-8
 class BonusUpgradeDetailsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authenticate_admin_activity
@@ -46,7 +47,7 @@ class BonusUpgradeDetailsController < ApplicationController
 
     respond_to do |format|
       if @bonus_upgrade_detail.save
-        format.html { redirect_to(@bonus_upgrade_detail, :notice => 'Bonus upgrade detail was successfully created.') }
+        format.html { redirect_to(@bonus_upgrade_detail, :notice => '创建成功！') }
         format.xml  { render :xml => @bonus_upgrade_detail, :status => :created, :location => @bonus_upgrade_detail }
       else
         format.html { render :action => "new" }
@@ -62,7 +63,7 @@ class BonusUpgradeDetailsController < ApplicationController
 
     respond_to do |format|
       if @bonus_upgrade_detail.update_attributes(params[:bonus_upgrade_detail])
-        format.html { redirect_to(@bonus_upgrade_detail, :notice => 'Bonus upgrade detail was successfully updated.') }
+        format.html { redirect_to(@bonus_upgrade_detail, :notice => '更新成功！') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

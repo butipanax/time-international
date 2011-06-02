@@ -1,3 +1,4 @@
+#encoding: utf-8
 class RolesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authenticate_admin_activity
@@ -46,7 +47,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-        format.html { redirect_to(@role, :notice => 'Role was successfully created.') }
+        format.html { redirect_to(@role, :notice => '创建成功！') }
         format.xml  { render :xml => @role, :status => :created, :location => @role }
       else
         format.html { render :action => "new" }
@@ -62,7 +63,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.update_attributes(params[:role])
-        format.html { redirect_to(@role, :notice => 'Role was successfully updated.') }
+        format.html { redirect_to(@role, :notice => '更新成功！') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
