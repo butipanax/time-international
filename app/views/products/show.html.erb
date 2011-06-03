@@ -3,48 +3,71 @@
 <p>
 <div class="content_border">
   <%= image_tag @product.photo.url(:medium) %>
-</div>
+</div>	
 </p>
-       
-<div class="clr"></div><br />
-<div class="emph">
-<p>
-  <b>商品名称:&nbsp;</b>
-  <%= @product.title %>
-</p>
-</div>
-<hr/>
-<p>
-<% if user_signed_in? %>
-			<% if (current_user.role?("admin") || current_user.role?("staff")) %>
-<b> 商品目录:&nbsp;</b>
-  <%= Category.find_by_id(@product. category_id).name %>
-</p>
-<p>
-  <b> 商品简介:&nbsp;</b>
-  <%= @product. intro %>
-</p>
+<br />
+<p><%= link_to '购买', line_items_path(:product_id => @product), :method => :post, :remote=>true %>|
+<% if session[:current_category_id] %>
+<%= link_to '返回',  "/productslist/#{session[:current_category_id]}" %>
+<% else %>
+<%= link_to '返回',  products_url %>
 <% end %>
-		<% end %>
-<p>
-  <div class="emph"><b>商品介绍:&nbsp;</b></div><br />
-  <%= @product.description.html_safe %>
-</p>
-<hr/>
-<div class="emph">
-<p>
-  <b>价格:&nbsp;</b>
-  <%= number_to_currency(@product.price,:unit=>"￥")%>
-</p>
-</div>
-<hr/>
-       
+</p>   
 <div class="cl"></div><br />
-
-		<%= link_to '购买', line_items_path(:product_id => @product), :method => :post, :remote=>true %>
+	<div class="emph">
+		<p>
+			<b>商品名称:&nbsp;</b>
+			<%= @product.title %>
+		</p>
+	<hr/>
+		<p>
+			<b>价格:&nbsp;</b>
+			<%= number_to_currency(@product.price,:unit=>"￥")%> 
+		</p>
+	<hr />
+	</div>
+	<p>
+		<div class="emph">
+			<b> 重量(kg):&nbsp;</b>
+		</div>
+		<%= @product.weight %>
+	</p>
+	<hr />
 	<% if user_signed_in? %>
-		<% if (current_user.role?("admin") || current_user.role?("staff")) %>
-			 |<%= link_to '编辑', edit_product_path(@product) %> 
-		<% end %>
+	<% if (current_user.role?("admin") || current_user.role?("staff")) %>
+	<p>
+		<div class="emph">
+			<b> 商品目录:&nbsp;</b>
+		</div>
+		<%= Category.find_by_id(@product. category_id).name %>
+	</p>
+	<hr />
+	<p>
+		<div class="emph">
+			<b> 商品简介:&nbsp;</b>
+		</div>
+		<%= @product. intro %>
+	</p>
+	<hr />
+	<% end %>
+	<% end %>
+	<div class="emph2">
+	<p>
+			<b>商品介绍:&nbsp;</b>
+		<br />
+		<%= @product.description.html_safe %>
+	</p>
+		</div>
+	<hr/>
+
+
+	<div class="cl">
+	</div>
+	<br />
+
+	<% if user_signed_in? %>
+	<% if (current_user.role?("admin") || current_user.role?("staff")) %>
+	|<%= link_to '编辑', edit_product_path(@product) %> |<%= link_to '添加新商品', new_product_path %>
+	<% end %>
 	<% end %>
 </div>

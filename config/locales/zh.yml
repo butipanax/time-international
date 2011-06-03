@@ -35,6 +35,7 @@ zh:
         user:
           attributes:
             email:
+              invalid:  '（无效的邮件地址！）'
               taken: '（此email账号已被他人使用！）'
             current_password:  
               invalid: '（当前用户名密码错误！）'

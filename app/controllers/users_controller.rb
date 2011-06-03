@@ -1,4 +1,4 @@
-#enconding: utf-8
+#encoding: utf-8
 class UsersController < ApplicationController
 
   before_filter :authenticate_user!
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     @profile = @user.profile || @user.build_profile 
     respond_to do |format|
       if (@user.update_attributes(params[:user]) and @profile.update_attributes(params[:user][:profile_attributes]))
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(@user, :notice => '更新成功！') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

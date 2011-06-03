@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
+    @cart = current_cart 
     @products = Product.all
     @products = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 7
     respond_to do |format|
@@ -18,6 +19,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.xml
   def show
+    @cart = current_cart 
     @product = Product.find(params[:id])
 
     respond_to do |format|

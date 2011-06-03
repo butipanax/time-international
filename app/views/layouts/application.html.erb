@@ -9,6 +9,7 @@
 		<%= javascript_include_tag :defaults %>
 		<%= csrf_meta_tag %>
 	</head>
+
 	<body>
 
 		<div class="shell">
@@ -17,18 +18,18 @@
 				<span class="top-info"><strong>
   					<% if not user_signed_in? %>
               			<li>
-              			<%= link_to '登录',new_user_session_path,{:style=>'color:#f8379b'} %>
+              			<%= link_to '登录',new_user_session_path,{:style=>'color:#007f00'} %>
                 		| 
-                		<%= link_to '注册',new_user_registration_path,{:style=>'color:#f8379b'} %>
+                		<%= link_to '注册',new_user_registration_path,{:style=>'color:#007f00'} %>
               			</li>
             		<% else %>
               			<li> 
 						<b style="color:red"><%=current_user.profile ? current_user.profile.discount_rank : 1  %>星会员: </b><%= current_user.email %> |
-                		<%= link_to '退出', destroy_user_session_path,{:style=>'color:#f8379b'} %>
+                		<%= link_to '退出', destroy_user_session_path,{:style=>'color:#007f00'} %>
                 		|
-                		<%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#f8379b'} %>
+                		<%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#007f00'} %>
 						|
-                		<%= link_to '订单记录', '/personal_orders_list',{:style=>'color:#f8379b'} %>
+                		<%= link_to '订单记录', '/personal_orders_list',{:style=>'color:#007f00'} %>
               			</li>
             		<% end %>  
 				</strong></span>
@@ -53,7 +54,7 @@
 						<% if user_signed_in? %>
 							<% if (current_user.role?("admin") || current_user.role?("staff")) %>
    							<li><%= link_to "业务管理", '/business/index' %></li>
-							<% if current_user.role("admin")%> 
+							<% if current_user.role?("admin")%> 
           						<li><%= link_to "数据设置", management_url %></li>
 								<% end %>
 							<% end %>

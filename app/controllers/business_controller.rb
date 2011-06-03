@@ -4,7 +4,7 @@ require 'csv'
 
 class BusinessController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authenticate_admin_activity
+  before_filter :authenticate_staff_activity
   def index
   end
 
