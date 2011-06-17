@@ -25,30 +25,41 @@
 			<%= number_to_currency(@product.price,:unit=>"￥")%> 
 		</p>
 	<hr />
-	</div>
 	<p>
-		<div class="emph">
+
 			<b> 重量(kg):&nbsp;</b>
-		</div>
 		<%= @product.weight %>
 	</p>
 	<hr />
+	</div>
 	<% if user_signed_in? %>
 	<% if (current_user.role?("admin") || current_user.role?("staff")) %>
+	<div class="emph">
 	<p>
-		<div class="emph">
-			<b> 商品目录:&nbsp;</b>
-		</div>
+		<b> 商品目录:&nbsp;</b>
 		<%= Category.find_by_id(@product. category_id).name %>
 	</p>
+	<hr />
+	<p>
+		<b> 商品简称:&nbsp;</b>
+		<%= @product.abb_name %>
+	</p>
+	</div>
 	<hr />
 	<p>
 		<div class="emph">
 			<b> 商品简介:&nbsp;</b>
 		</div>
 		<%= @product. intro %>
+	</p><p></p>
+	<hr />
+	<div class="emph">
+	<p>
+			<b> 状态:&nbsp;</b>
+		<%=  @product.status == 0 ? "下架" : "上架" %>	
 	</p>
 	<hr />
+	</div>
 	<% end %>
 	<% end %>
 	<div class="emph2">
@@ -67,7 +78,7 @@
 
 	<% if user_signed_in? %>
 	<% if (current_user.role?("admin") || current_user.role?("staff")) %>
-	|<%= link_to '编辑', edit_product_path(@product) %> |<%= link_to '添加新商品', new_product_path %>
+	<%= link_to '编辑', edit_product_path(@product) %> |<%= link_to '添加新商品', new_product_path %>
 	<% end %>
 	<% end %>
 </div>

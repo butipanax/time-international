@@ -8,8 +8,17 @@ class ProductsController < ApplicationController
   # GET /products.xml
   def index
     @cart = current_cart 
-    @products = Product.all
-    @products = Product.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 7
+    
+    if user_signed_in? 
+      if (current_user.role?("admin") || current_user.role?("staff")) 
+        @products = Product.all.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 7
+      else
+        @products = Product.mount.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 7
+      end
+    else
+      @products = Product.mount.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 7
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
@@ -30,9 +39,20 @@ class ProductsController < ApplicationController
   
   def search_products_by_name
     product_name = params[:name_search_field]
-    @products_list = Product.where("title  like ?","%#{product_name}%")
+    
+    if user_signed_in? 
+      if (current_user.role?("admin") || current_user.role?("staff")) 
+        @products_list = Product.where("title  like ?","%#{product_name}%")
+      else
+        @products_list = Product.mount.where("title  like ?","%#{product_name}%")
+      end
+    else
+      @products_list = Product.mount.where("title  like ?","%#{product_name}%")
+    end
+    
+
     if @products_list.empty?
-      flash[:notice] = "很遗憾，没有指定名称的商品！"
+      flash[:notice] = "很遗憾，没有指定名称为#{product_name}的商品！"
     else
       @products_list = @products_list.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 7
     end
@@ -44,16 +64,48 @@ class ProductsController < ApplicationController
     @cart = current_cart 
     session[:current_category_id] = category_id
     @products_list = []
-    if Category.find_by_id(category_id).parent_id
-      @products_list = Product.mount.find_all_by_category_id(category_id)
-    else
-      for category in Category.find_all_by_parent_id(category_id)
-        tmp = Product.mount.find_all_by_category_id(category.id)
-        unless tmp.size == 0
-          @products_list.concat(tmp)
+ 
+     if user_signed_in? 
+        if (current_user.role?("admin") || current_user.role?("staff"))           
+          if Category.find_by_id(category_id).parent_id
+            @products_list = Product.find_all_by_category_id(category_id)
+          else
+            for any_category in Category.find_all_by_parent_id(category_id)
+              tmp = Product.find_all_by_category_id(any_category.id)
+              unless tmp.size == 0
+                @products_list.concat(tmp)
+              end
+            end
+          end
+    
+        else
+      
+          if Category.find_by_id(category_id).parent_id
+            @products_list = Product.mount.find_all_by_category_id(category_id)
+          else
+            for any_category in Category.find_all_by_parent_id(category_id)
+              tmp = Product.mount.find_all_by_category_id(any_category.id)
+              unless tmp.size == 0
+                @products_list.concat(tmp)
+              end
+            end
+          end
+      
         end
-      end
+    else
+        if Category.find_by_id(category_id).parent_id
+          @products_list = Product.mount.find_all_by_category_id(category_id)
+        else
+          for any_category in Category.find_all_by_parent_id(category_id)
+            tmp = Product.mount.find_all_by_category_id(any_category.id)
+            unless tmp.size == 0
+              @products_list.concat(tmp)
+            end
+          end
+        end
     end
+    
+    
     if @products_list.empty?
       flash[:notice] = "很遗憾，指定目录没有商品！"
     else

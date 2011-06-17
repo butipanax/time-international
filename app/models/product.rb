@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 class Product < ActiveRecord::Base
-  validates :title,:intro, :category_id, :description, :price, :cost, :presence => true
+  validates :title,:intro, :category_id, :description, :price, :cost, :abb_name, :presence => true
   validates_length_of :intro, :maximum => 129
   validates_numericality_of :cost, :price, :weight
   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }

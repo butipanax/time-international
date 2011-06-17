@@ -8,7 +8,6 @@
     <th>目录名称</th>    
     <th>父目录</th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @categories.each do |category| %>
@@ -17,7 +16,6 @@
    
     <td><%= if category.parent_id then Category.find_by_id(category.parent_id).name end %></td>
     <td><%= link_to '编辑', edit_category_path(category) %></td>
-    <td><%= link_to '删除', category, :confirm => '确定删除？', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

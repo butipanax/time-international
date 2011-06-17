@@ -1,5 +1,5 @@
 <div class="simple">
-	<a href="#" class="image"> <%= image_tag product.photo.url(:thumb) %> </a>
+	<%= link_to image_tag(product.photo.url(:thumb)), "/products/#{product.id}", :class=>"image"%>
 	<div class="info">
 		<h3><%= product.title %></h3>
 		<span><%= number_to_currency(product.price,:unit=>"￥") %></span>
@@ -10,12 +10,12 @@
 	<div class="cl">
 		&nbsp;
 	</div>
+	<br />
 	<%= link_to '详细',"/products/#{product.id}" %>
 	<%= link_to '购买', line_items_path(:product_id => product), :method => :post, :remote=>true %>
 	<% if user_signed_in? %>
 		<% if (current_user.role?("admin") || current_user.role?("staff")) %>
     		<%= link_to '编辑', edit_product_path(product) %>
-   		 	<%= link_to '删除', product, :confirm => '确定删除？', :method => :delete %>
 		<% end %>
 	<% end %>
 	<div class="cl">

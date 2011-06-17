@@ -1,4 +1,5 @@
 <div class="simple_content">
+<h2>目录显示</h2>
 <br />
 <p>
   <b>商品目录名称：</b>
@@ -10,7 +11,12 @@
   <%= if @category.parent_id then Category.find_by_id(@category.parent_id).name end %>
 </p>
 
+<p>
+  <b>是否显示在左栏：</b>
+  <%= @category.is_show == 0 ? '不显示' : '显示'%>
+</p>
 
+<br />
 <%= link_to '编辑', edit_category_path(@category) %> |
 <%= link_to '返回', categories_path %>
 

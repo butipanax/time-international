@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601192819) do
+ActiveRecord::Schema.define(:version => 20110604100212) do
 
   create_table "bonus_upgrade_details", :force => true do |t|
     t.string   "objective_name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20110601192819) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "is_show",    :default => 1
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20110601192819) do
     t.decimal  "weight",             :precision => 6,  :scale => 2, :default => 0.0
     t.decimal  "cost",               :precision => 10, :scale => 2
     t.integer  "status",                                            :default => 0
+    t.string   "abb_name"
   end
 
   create_table "profiles", :force => true do |t|

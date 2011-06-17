@@ -19,6 +19,10 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+    <%= f.label :商品简称 %><br />
+    <%= f.text_field :abb_name %>
+  </div>
+  <div class="field">
     <%= f.label :商品目录 %><br />
     <%= f.select :category_id, Category.all.select{|p|p.parent_id}.map{|p| [Category.find_by_id(p.parent_id).name + "->" + p.name,p.id]}.sort_by{|p|p[0]} %>
     
@@ -36,7 +40,7 @@
   
   <div class="field">
     <%= f.label :商品介绍 %><br />
-    <%= f.cktext_area :description, :toobar=>'full', :width => '582px', :height =>'300px' %>
+    <%= f.cktext_area :description, :toobar=>'full', :width => '582px', :height =>'470px' %>
   </div>
   <div class="field">
     <%= f.label :价格 %><br />

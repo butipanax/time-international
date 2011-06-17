@@ -31,7 +31,7 @@ class MainController < ApplicationController
     sql_statement << " group by user_id"
   
     conn=ActiveRecord::Base.connection
-    @statistic_result = conn.select_all( sql_statement)
+    @statistic_result = conn.select_all(sql_statement)
     @statistic_result2 = conn.select_one(sql_statement2)
     
   end

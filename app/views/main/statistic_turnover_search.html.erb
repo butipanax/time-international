@@ -21,7 +21,7 @@
 		</tr>
 		<% @statistic_result.each do |r| %>
 			<tr>
-				<td colspan=5><%= User.find_by_id(r["user_id"]).email %></td>
+				<td colspan=5><%= User.find_by_id(r["user_id"]).email if User.find_by_id(r["user_id"]) %></td>
 				<td colspan=2><%= if p = Profile.find_by_user_id(r["user_id"]) then p.name end %></td>
 				<td colspan=4><%= if p = Profile.find_by_user_id(r["user_id"]) then p.wangwang_number end %></td>
 			</tr>

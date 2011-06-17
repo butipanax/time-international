@@ -17,10 +17,13 @@
   </div>
   
   <div class="field">
-    <%= f.label :'父目录：' %><br />
+    <%= f.label '父目录：' %><br />
     <%= f.select :parent_id, @parent_id_category %>
   </div>
-  
+  <div class="field">
+    <%= f.label '是否显示：（用于控制该目录是否显示在左栏）' %><br />
+    <%= f.select :is_show, [["不显示",0],["显示",1]] %>
+  </div> 
   <div class="actions">
     <%= f.submit '保存'%>
   </div>

@@ -13,9 +13,9 @@ module ApplicationHelper
 
   def get_and_update_category_list
     category_list = Hash.new
-    Category.get_parent_category.each do |category|
+    Category.mount.get_parent_category.each do |category|
       sub_category ||= Array.new
-      sub_category += Category.find_all_by_parent_id(category.id)
+      sub_category += Category.mount.find_all_by_parent_id(category.id)
       category_list[category] = sub_category
     end
     category_list

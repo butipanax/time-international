@@ -71,7 +71,7 @@
 <table>
 	<tr class="tfoot">
     <td colspan=2><strong>折扣后总计商品金额:</strong></td>
-    <td colspan=2><strong><%= number_to_currency(@cart.total_price, :unit=>"￥") %></strong></td>
+    <td colspan=2><strong><%= number_to_currency(total_discount_price, :unit=>"￥") %></strong></td>
 
     <td colspan=2><strong>总计包裹金额:</strong></td>
     <td colspan=2><strong><%= number_to_currency(((total_weight / 5).to_i + 1)*five_kilo_price,:unit=>"￥") %></strong></td>

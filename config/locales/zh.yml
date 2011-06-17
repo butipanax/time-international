@@ -6,6 +6,8 @@ zh:
       models:
         product:
           attributes:
+            abb_name:
+              blank:  '（商品简称不能为空）'
             intro:
               too_long:   '（商品简介内容过长，不能超过120个字）'
               blank:  '（商品简介不能为空！）'

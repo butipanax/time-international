@@ -11,7 +11,12 @@ class BusinessController < ApplicationController
   def query_shipping_list
 
   end
+  def query_products_list
 
+  end
+  def products_list
+
+  end
   def shipping_list
     @inputted_date = params[:inputted_date]
     @orders = Order.shipping_list(DateTime.parse(@inputted_date),DateTime.parse(@inputted_date).tomorrow ) 
@@ -21,7 +26,7 @@ class BusinessController < ApplicationController
       @orders.each do |o|
         goods =""
         o.line_items.each do |l|
-          goods << l.product.title
+          goods << l.product.abb_name
           goods << " "
           goods << l.quantity
           goods << "份   " 

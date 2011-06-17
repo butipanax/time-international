@@ -7,7 +7,6 @@
     <th>重量：</th>
     <th>价格：</th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @shipping_fees.each do |shipping_fee| %>
@@ -15,7 +14,6 @@
     <td><%= shipping_fee.weight %>kg</td>
     <td><%= number_to_currency(shipping_fee.price,:unit => '￥') %></td>
     <td><%= link_to '编辑', edit_shipping_fee_path(shipping_fee) %></td>
-    <td><%= link_to '删除', shipping_fee, :confirm => '确定删除？', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

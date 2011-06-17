@@ -129,5 +129,12 @@
 			</div>
 		</div>
 	</body>
+<script type="text/javascript">window.onload=window.onresize= function() {
+		if(document.getElementById("main").clientHeight<document.getElementById("sidebar").clientHeight) {
+			document.getElementById("main").style.height=document.getElementById("sidebar").offsetHeight-2+"px";
+		} else {
+			document.getElementById("sidebar").style.height=document.getElementById("main").offsetHeight-2+"px";
+		}
+	}</script>
 </html>
 

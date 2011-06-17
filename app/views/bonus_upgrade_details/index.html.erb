@@ -10,7 +10,6 @@
     <th>客户等级</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @bonus_upgrade_details.each do |bonus_upgrade_detail| %>
@@ -22,7 +21,6 @@
     <td><%= bonus_upgrade_detail.upgrade_level %></td>
     <td><%= link_to '查看', bonus_upgrade_detail %></td>
     <td><%= link_to '编辑', edit_bonus_upgrade_detail_path(bonus_upgrade_detail) %></td>
-    <td><%= link_to '删除', bonus_upgrade_detail, :confirm => '确定删除？', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
