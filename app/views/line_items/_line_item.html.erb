@@ -3,9 +3,10 @@
 <% else %>
   <tr>
 <% end %>
-  <td><%= line_item.quantity %>&times; </td>
+
   <td colspan="5"><%= line_item.product.title %></td>
-  <td colspan="3" class="item_price"><%= number_to_currency(line_item.price,:unit=>"￥") %>
+  <td>&times; <%= line_item.quantity %></td>
+  <td colspan="3" class="item_price"><%= number_to_currency(line_item.price,:unit=>"￥") %><%= link_to ' 删除',line_item_path(:id => line_item), :method => :delete, :remote=>true %>
   </td>
 </tr>
 

@@ -12,7 +12,7 @@
     clear:both;
 }
 body{
-    background: -moz-linear-gradient(left, rgba(255,255,255,0.06), rgba(255,255,255,0.5)), url(/images/bkg.jpeg);
+    background: -moz-linear-gradient(left, rgba(255,255,255,0.4), rgba(255,255,255,0.7)), url(/images/bkg.jpeg);
     font-family:Arial, sans-serif;
     color:#4e4e4e;
     font-size:12px;
@@ -252,6 +252,7 @@ font-weight:bold;
 #cart .cart_title {font: 120% bold;}
 #cart .item_price, #cart .total_line {text-align: right;}
 #cart .total_line .total_cell {font-weight: bold;border-top: 1px solid #595;}
+#cart a {color: #989898;}
 
 #sidebar ul.pink{list-style-type: none; font-size: 12px; padding-top:10px; width:280px;}
 #sidebar ul.pink li{ background:url(/images/bull.gif) no-repeat 0 3px; padding-left:15px; text-transform: uppercase; padding-bottom:10px}

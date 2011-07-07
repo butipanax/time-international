@@ -25,11 +25,11 @@
             		<% else %>
               			<li> 
 						<b style="color:red"><%=current_user.profile ? current_user.profile.discount_rank : 1  %>星会员: </b><%= current_user.email %> |
-                		<%= link_to '退出', destroy_user_session_path,{:style=>'color:#007f00'} %>
+                		<%= link_to '退出', destroy_user_session_path,{:style=>'color:#989898'} %>
                 		|
-                		<%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#007f00'} %>
+                		<%= link_to '修改个人信息', edit_user_registration_path,{:style=>'color:#989898'} %>
 						|
-                		<%= link_to '订单记录', '/personal_orders_list',{:style=>'color:#007f00'} %>
+                		<%= link_to '订单记录', '/personal_orders_list',{:style=>'color:#989898'} %>
               			</li>
             		<% end %>  
 				</strong></span>

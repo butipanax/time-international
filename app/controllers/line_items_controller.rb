@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:create]
-  before_filter :authenticate_staff_activity, :except => [:create]
+  before_filter :authenticate_user!, :except => [:create,:destroy]
+  before_filter :authenticate_staff_activity, :except => [:create,:destroy]
   # GET /line_items
   # GET /line_items.xml
   def index
@@ -77,11 +77,12 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.xml
   def destroy
-    @line_item = LineItem.find(params[:id])
-    @line_item.destroy
+    @cart = current_cart
+    @line_item = @cart.delete_product(params[:id])
 
     respond_to do |format|
       format.html { redirect_to(line_items_url) }
+      format.js {@current_item = @line_item}
       format.xml  { head :ok }
     end
   end
