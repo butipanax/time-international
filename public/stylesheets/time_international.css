@@ -12,7 +12,7 @@
     clear:both;
 }
 body{
-    background: -moz-linear-gradient(left, rgba(255,255,255,0.4), rgba(255,255,255,0.7)), url(/images/bkg.jpeg);
+    background: url(/images/bkg.jpeg);
     font-family:Arial, sans-serif;
     color:#4e4e4e;
     font-size:12px;
@@ -101,7 +101,7 @@ font-weight:bold;
 #header .search .btnp input{ width:29px; height:22px; font-size: 0; line-height: 0px; text-indent: -4000px; background:url(/images/go.gif); float:right; display: inline; cursor:pointer; border:0;}
 #header .search .fld{width:228px; height:22px; background:url(/images/fld.gif); float: left; display: inline;}
 
-#header2{height:72px; background: -moz-linear-gradient(left, rgba(255,255,255,0.1), rgba(255,255,255,1)), url(/images/bg2.gif); }
+#header2{height:72px; background: url(/images/bg2.gif); }
 #header2 #nav_l{float: left; font-size: 28px; padding-top: 15px; padding-left: 10px;color: #534ef4;font-weight: 900;}
 #header2 #nav {float: right;}
 #header2 #nav ul li {float:left;}

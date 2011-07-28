@@ -25,7 +25,12 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: usr_web37_1
   pool: 5
-  timeout: 5000
+  username: web37
+  password: yyxll37
+  host: localhost
+  
