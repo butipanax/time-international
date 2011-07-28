@@ -1,4 +1,4 @@
-尊敬的客户<%= @order.name %>
+尊敬的客户<%= @order.name %>:
 
 非常感谢您购买我们的网站的商品，您的购物清单如下：
 
@@ -13,14 +13,14 @@
 <% end %>
 
 
-商品总价格为： <% @order.total_price %>
-商品打折后价格为： <% @order.discount_price %>
-邮资为： <% @order.shipping_price %>
-您需要支付： <% @order.pay_price %>
+商品总价格为： <%= @order.total_price %>
+商品打折后价格为： <%= @order.discount_price %>
+邮资为： <%= @order.shipping_price %>
+您需要支付： <%= @order.pay_price %>
 
 在确认您付款后，我们会尽快给您发货并通过EMAIL告知您的包裹信息。
 
 
-谢谢
+谢谢您的惠顾！
 
 Time International GmbH

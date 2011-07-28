@@ -36,7 +36,17 @@ TimeInternationalECommerce::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "server5.domaincamp.de",
+    :port => 25,
+    :domain => "domaincamp.de",
+    :authentication => "plain",
+    :user_name => "web37p2",
+    :password => "yyxll37",
+    :enable_starttls_auto => true
+  }
+  config.action_mailer.default_url_options= { :host => 'germany-time.de'}
   # Enable threaded mode
   # config.threadsafe!
 

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20110604100212) do
   create_table "bonus_upgrade_details", :force => true do |t|
     t.string   "objective_name"
     t.integer  "bonus_reward_score"
-    t.decimal  "bonus_reward_price"
+    t.decimal  "bonus_reward_price", :precision => 10, :scale => 0
     t.integer  "upgrade_count"
     t.integer  "upgrade_level"
     t.datetime "created_at"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20110604100212) do
   add_index "ckeditor_assets", ["user_id"], :name => "fk_user"
 
   create_table "discount_details", :force => true do |t|
-    t.decimal  "discount_rate", :default => 1.0
+    t.decimal  "discount_rate", :precision => 10, :scale => 0, :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(:version => 20110604100212) do
     t.integer  "cart_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "quantity",   :default => 1
+    t.integer  "quantity",                                  :default => 1
     t.integer  "order_id"
-    t.decimal  "price"
+    t.decimal  "price",      :precision => 10, :scale => 2
   end
 
   create_table "order_statuses", :force => true do |t|
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(:version => 20110604100212) do
     t.string   "pay_type"
     t.string   "taobao_url"
     t.string   "taobao_invoice_number"
-    t.decimal  "total_price"
-    t.decimal  "discount_price"
+    t.decimal  "total_price",           :precision => 10, :scale => 2
+    t.decimal  "discount_price",        :precision => 10, :scale => 2
     t.string   "invoice_number"
     t.integer  "order_status_id"
     t.datetime "shipping_date"
@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(:version => 20110604100212) do
     t.text     "cancel_reason"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "shipping_price"
-    t.decimal  "pay_price"
+    t.decimal  "shipping_price",        :precision => 10, :scale => 2
+    t.decimal  "pay_price",             :precision => 10, :scale => 2
     t.integer  "package_count"
     t.string   "wangwang_number"
     t.string   "province"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20110604100212) do
     t.string   "title"
     t.integer  "category_id"
     t.text     "description"
-    t.decimal  "price"
+    t.decimal  "price",              :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -152,8 +152,8 @@ ActiveRecord::Schema.define(:version => 20110604100212) do
   end
 
   create_table "shipping_fees", :force => true do |t|
-    t.decimal  "weight"
-    t.decimal  "price",      :precision => 8, :scale => 2
+    t.decimal  "weight",     :precision => 10, :scale => 0
+    t.decimal  "price",      :precision => 8,  :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

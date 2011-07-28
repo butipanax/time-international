@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Notifier < ActionMailer::Base
-  default :from => "from@example.com"
+  default :from => "services@germany-time.de"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

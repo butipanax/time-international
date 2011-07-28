@@ -13,7 +13,7 @@ gem 'paperclip', "~> 2.3"
 gem 'ckeditor', '3.4.2.pre'
 gem 'will_paginate', '>= 3.0.pre'
 group :production do
-  gem 'mysql'
+  gem 'mysql2'
 end
 
 gem 'capistrano'
