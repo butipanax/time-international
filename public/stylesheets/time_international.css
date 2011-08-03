@@ -101,7 +101,7 @@ font-weight:bold;
 #header .search .btnp input{ width:29px; height:22px; font-size: 0; line-height: 0px; text-indent: -4000px; background:url(/images/go.gif); float:right; display: inline; cursor:pointer; border:0;}
 #header .search .fld{width:228px; height:22px; background:url(/images/fld.gif); float: left; display: inline;}
 
-#header2{height:72px; background: url(/images/bg2.gif); }
+#header2{height:88px; background: url(/images/bg3.gif); }
 #header2 #nav_l{float: left; font-size: 28px; padding-top: 15px; padding-left: 10px;color: #534ef4;font-weight: 900;}
 #header2 #nav {float: right;}
 #header2 #nav ul li {float:left;}
