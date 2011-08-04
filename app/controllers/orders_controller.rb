@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   
   def personal_orders
     @orders = Order.where('user_id = ?',"#{current_user.id}")
-    @orders = @orders.paginate :page=>params[:page], :order => 'name desc', :per_page => 22  
+    @orders = @orders.paginate :page=>params[:page], :order => 'created_at desc', :per_page => 22  
   end
   # GET /orders
   # GET /orders.xml
