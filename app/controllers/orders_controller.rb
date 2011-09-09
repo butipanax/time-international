@@ -121,13 +121,13 @@ class OrdersController < ApplicationController
     if @order.pay_type == 'pay_taobao'
       xml_data = Net::HTTP.get_response(getRequestUrl(title,@order.pay_price)).body
       doc = REXML::Document.new(xml_data)
-      taobao_id = doc.elements['item_add_response/item/iid'].text
+      taobao_id = doc.elements['item_add_response/item/num_iid'].text
       xml_data2 = Net::HTTP.get_response(getRequestUrl2(taobao_id)).body
       doc2 =REXML::Document.new(xml_data2)
       taobao_url = doc2.elements['item_get_response/item/detail_url'].text
 
       @order.taobao_invoice_number = taobao_id
-      @order.taobao_url=taobao_url
+      @order.taobao_url = taobao_url
     end
     
     respond_to do |format|
@@ -252,7 +252,7 @@ class OrdersController < ApplicationController
   end
 
   def getRequestUrl(title,price)
-    #url = 'http://gw.api.taobao.com/router/rest?'
+    # url = 'http://gw.api.taobao.com/router/rest?'
     url = 'http://gw.api.tbsandbox.com/router/rest?'
     url = url + createRequestParam(getArgumentPara(title,price))+'sign=' + sign(getArgumentPara(title,price),'sandbox36f17baa86659f353f9f8a88a')
     parsedURL = URI.parse(url)

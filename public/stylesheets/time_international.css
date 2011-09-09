@@ -254,6 +254,8 @@ font-weight:bold;
 #cart .total_line .total_cell {font-weight: bold;border-top: 1px solid #595;}
 #cart a {color: #989898;}
 
+
+#sidebar .top .notice{ color: #f8379b; padding-top:12px;  margin-bottom:20px;}
 #sidebar ul.pink{list-style-type: none; font-size: 12px; padding-top:10px; width:280px;}
 #sidebar ul.pink li{ background:url(/images/bull.gif) no-repeat 0 3px; padding-left:15px; text-transform: uppercase; padding-bottom:10px}
 #sidebar ul.pink li a{color:#f8379b; text-decoration: none;}
