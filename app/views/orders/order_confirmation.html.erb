@@ -34,7 +34,7 @@
 <br/>
 <ul>
 <li>淘宝宝贝订单号： <%= @order.taobao_invoice_number %></li>
-<li>淘宝宝贝链接地址： <a><%= @order.taobao_url %></a></li>
+<li>淘宝宝贝链接地址： <%= link_to "#{@order.taobao_url}",@order.taobao_url %> </li>
 </ul>
 <% else %>
 <p>请您使用下面支付宝账号进行支付，我们会在确认付款后给您邮寄您所订购的商品！</p>

@@ -48,9 +48,9 @@
 				<div id="nav">
         			<ul>
         				<li><%= link_to "网站首页", root_path, :class=>"current" %></li>
-          				<li><a href="about.html">公司信息</a></li>
-          				<li><a href="privacy.html">服务内容</a></li>
-          				<li><a href="gallery.html">联系我们</a></li>
+						<li><%= link_to "公司信息", "/pages/home"%></li>
+						<li><%= link_to "服务内容", "/pages/service" %></li>
+						<li><%= link_to "联系我们", "/pages/contact" %></li>
 						<% if user_signed_in? %>
 							<% if (current_user.role?("admin") || current_user.role?("staff")) %>
    							<li><%= link_to "业务管理", '/business/index' %></li>

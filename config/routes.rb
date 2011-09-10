@@ -1,4 +1,10 @@
 TimeInternationalECommerce::Application.routes.draw do
+  get "pages/home"
+
+  get "pages/service"
+
+  get "pages/contact"
+
   get "business/index"
   get "business/query_shipping_list"
   get "business/shipping_list"
